@@ -2,11 +2,11 @@
 {
     public class VendingMachineProduct
     {
-        internal string Name { get; set; }
-        internal decimal Price { get; set; }
-        internal int Quantity { get; set; }
+        public string Name { get; set; }
+        public decimal Price { get; set; }
+        public int Quantity { get; set; }
 
-        internal const int INITIAL_STARTING_QUANTITY = 5;
+        public const int INITIAL_STARTING_QUANTITY = 5;
         internal const string SOLD_OUT_MESSAGE = "SOLD OUT";
 
         public virtual string ShowMessageToCustomerAfterSale()

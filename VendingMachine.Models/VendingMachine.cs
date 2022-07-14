@@ -6,9 +6,9 @@
         internal const string VENDING_MACHINE_MODEL = "Vendo-Matic 600";
         
         internal VendingMachineCustomer Customer { get; set; }
-        internal VendingMachineOwner Owner { get; set; }
+        public VendingMachineOwner Owner { get; set; }
         
-        internal Dictionary<string, VendingMachineProduct> Products = new();
+        public Dictionary<string, VendingMachineProduct> Products = new();
         internal decimal CustomerBalance { get; set; }
         internal decimal DailySales { get; set; }
         internal bool IsOn { get; set; }

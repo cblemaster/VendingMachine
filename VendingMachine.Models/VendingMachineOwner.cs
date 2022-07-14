@@ -13,7 +13,7 @@
             vendingMachine.IsOn = false;
         }
 
-        internal static bool UpdateVendingMachineInventory()
+        public static bool UpdateVendingMachineInventory()
         {
             bool success = false;
 
