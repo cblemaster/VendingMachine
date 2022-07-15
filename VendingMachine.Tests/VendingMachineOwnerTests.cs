@@ -9,12 +9,41 @@ namespace VendingMachine.Models.Tests
         [TestMethod()]
         public void TurnOnVendingMachineTest()
         {
-            //Assert.Fail();
+            //Arrange
+            bool expected = true;
+
+            //Act
+            VendingMachine vm = new();
+            VendingMachineOwner.TurnOnVendingMachine(vm);
+            bool actual = vm.IsOn;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod()]
+        public void TurnOffVendingMachineTest()
+        {
+            //Arrange
+            bool expected = false;
+
+            //Act
+            VendingMachine vm = new();
+            VendingMachineOwner.TurnOffVendingMachine(vm);
+            bool actual = vm.IsOn;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
         }
 
         [TestMethod()]
         public void UpdateVendingMachineInventoryTest()
         {
+            // TODO: Find a better way of asserting dictionary
+            //       equality, or equivalency, or whatever.
+            //       This test is probably slow!
+
+
             //Arrange
             Dictionary<string, VendingMachineProduct> expectedProducts = new()
             {
@@ -45,10 +74,10 @@ namespace VendingMachine.Models.Tests
             //Assert
             //Did the method return true?
             Assert.AreEqual(true, actualBoolResult);
-            
+
             //Do the collections have the same count?
             Assert.AreEqual(expectedProducts.Count, actualProducts.Count);
-            
+
             //Are the products the same?
             foreach (KeyValuePair<string, VendingMachineProduct> kvp in expectedProducts)
             {

@@ -4,8 +4,8 @@
     {
         public static void PurchaseProduct(VendingMachine vendingMachine, VendingMachineProduct product)
         {
-            if (vendingMachine.CustomerBalance <= 0) { return; } // TODO: Error handling
-            if (product.Quantity <= 0) { return; } // TODO: Error handling
+            if (vendingMachine.CustomerBalance <= 0) return;  // TODO: Error handling
+            if (product.Quantity <= 0) return;  // TODO: Error handling
             {
                 // update customer balance
                 vendingMachine.CustomerBalance -= product.Price;
@@ -19,7 +19,7 @@
 
         internal static void DepositMoney(VendingMachine vendingMachine, int amountDeposited)
         {
-            if (amountDeposited <= 0) { return; } // TODO: Error handling
+            if (amountDeposited <= 0) return;  // TODO: Error handling
             vendingMachine.CustomerBalance += amountDeposited;
         }
     }

@@ -4,20 +4,18 @@
     {
         internal const string INVENTORY_FILE_NAME = "Inventory.txt";
         internal const string INVENTORY_FILE_PATH = @"..\..\..\..\Inventory";
+        
         public static void TurnOnVendingMachine(VendingMachine vendingMachine)
         {
             vendingMachine.IsOn = true;
             UpdateVendingMachineInventory(vendingMachine);
         }
 
-        internal static void TurnOffVendingMachine(VendingMachine vendingMachine)
-        {
-            vendingMachine.IsOn = false;
-        }
-
+        public static void TurnOffVendingMachine(VendingMachine vendingMachine) => vendingMachine.IsOn = false;
+        
         public static bool UpdateVendingMachineInventory(VendingMachine vendingMachine)
         {
-            //I think the inventory needs to be set to copy to output directory
+            //TODO: Does the inventory file need to be set to 'copy to output directory'? It seems to be working w/o this...
             bool success = false;
             string currentDirectory = Environment.CurrentDirectory;
             string fullInventoryFilePath = Path.Combine(currentDirectory, INVENTORY_FILE_PATH, INVENTORY_FILE_NAME);
@@ -44,18 +42,18 @@
                             productToAddToInventory.Price = Decimal.Parse(lineArray[2]);
                             productToAddToInventory.Quantity = VendingMachineProduct.INITIAL_STARTING_QUANTITY;
                             vendingMachine.Products.Add(lineArray[0].ToUpper(), productToAddToInventory);
-                        }                        
+                        }
                     }
                 }
-                
+
                 success = true;
             }
 
             catch (Exception ex)
             {
                 success = false;
-            }            
-            
+            }
+
             return success;
         }
     }
