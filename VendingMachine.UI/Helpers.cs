@@ -5,7 +5,7 @@ namespace VendingMachine.UI
     public class Helpers
     {
         //TODO: Straighten out namespace collisions that require fully qualified names here
-        internal static string DisplayItems(VendingMachine.Models.VendingMachine vm)
+        public static string DisplayItems(VendingMachine.Models.VendingMachine vm)
         {
             if (vm == null) return "Invalid vending machine?";
             if (!vm.Products.Any()) return "No items in inventory!";

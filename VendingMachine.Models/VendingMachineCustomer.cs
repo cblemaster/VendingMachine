@@ -17,7 +17,7 @@
 
         }
 
-        internal static void DepositMoney(VendingMachine vendingMachine, int amountDeposited)
+        public static void DepositMoney(VendingMachine vendingMachine, int amountDeposited)
         {
             if (amountDeposited <= 0) return;  // TODO: Error handling
             vendingMachine.CustomerBalance += amountDeposited;

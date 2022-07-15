@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\VendingMachine.Models\VendingMachine.Models.csproj" />
+    <ProjectReference Include="..\VendingMachine.UI\VendingMachine.UI.csproj" />
   </ItemGroup>
 
 </Project>
