@@ -9,8 +9,9 @@
         public VendingMachineOwner Owner { get; set; }
 
         public Dictionary<string, VendingMachineProduct> Products { get; set; } = new();
-        internal decimal CustomerBalance { get; set; }
+        public decimal CustomerBalance { get; set; }
         internal decimal DailySales { get; set; }
+        internal List<VendingMachineProduct> ProductsSoldToday { get; set; }
         public bool IsOn { get; set; }
 
         public static void DisplayProductsAvailableForPurchase()
