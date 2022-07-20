@@ -1,10 +1,8 @@
 ﻿namespace VendingMachine.Models
 {
-    public class Gum : VendingMachineProduct
+    public class Gum : Product
     {
-        public override string ShowMessageToCustomerAfterSale()
-        {
-            return base.ShowMessageToCustomerAfterSale();
-        }
+        public override string ShowMessageToCustomerAfterSale() => base.ShowMessageToCustomerAfterSale();
+        
     }
 }

@@ -3,7 +3,7 @@
 namespace VendingMachine.Models.Tests
 {
     [TestClass()]
-    public class VendingMachineProductTests
+    public class ProductTests
     {
         [TestMethod()]
         public void ShowMessageToCustomerAfterSaleTest()
@@ -13,7 +13,7 @@ namespace VendingMachine.Models.Tests
             string expected = "Base class message...";
 
             //Act
-            VendingMachineProduct product = new();
+            Product product = new();
             string actual = product.ShowMessageToCustomerAfterSale();
 
             //Assert
@@ -28,7 +28,7 @@ namespace VendingMachine.Models.Tests
             string expected = string.Format("{0,-20} {1:C}", "Potato Crisps", 3.05M);
 
             //Act
-            VendingMachineProduct vmp = new() { Name = "Potato Crisps", Price = 3.05M, Quantity = 1 };
+            Product vmp = new() { Name = "Potato Crisps", Price = 3.05M, Quantity = 1 };
             string actual = vmp.ToString();
 
             //Assert

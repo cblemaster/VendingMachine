@@ -1,11 +1,10 @@
 ﻿namespace VendingMachine.Models
 {
-    public class VendingMachineProduct
+    public class Product
     {
         public string Name { get; set; }
         public decimal Price { get; set; }
-        public int Quantity { get; set; }
-
+        
         public const int INITIAL_STARTING_QUANTITY = 5;
         public const string SOLD_OUT_MESSAGE = "SOLD OUT";
 

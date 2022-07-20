@@ -1,20 +1,29 @@
 ﻿namespace VendingMachine.Models
 {
-    public class VendingMachineOwner
+    public class Owner
     {
-        internal const string INVENTORY_FILE_NAME = "Inventory.txt";
-        internal const string INVENTORY_FILE_PATH = @"..\..\..\..\Inventory";
+        private const string INVENTORY_FILE_NAME = "Inventory.txt";
+        private const string INVENTORY_FILE_PATH = @"..\..\..\..\Inventory";
         
-        public static void TurnOnVendingMachine(VendingMachine vendingMachine)
+        public static void TurnOnVendingMachine(Vendomatic vendingMachine)
         {
+            if (vendingMachine == null) throw new ArgumentNullException(nameof(vendingMachine), "Unknown vending machine.");  // TODO: make error messages consts?
+            
             vendingMachine.IsOn = true;
             UpdateVendingMachineInventory(vendingMachine);
         }
 
-        public static void TurnOffVendingMachine(VendingMachine vendingMachine) => vendingMachine.IsOn = false;
-        
-        public static bool UpdateVendingMachineInventory(VendingMachine vendingMachine)
+        public static void TurnOffVendingMachine(Vendomatic vendingMachine)
         {
+            if (vendingMachine == null) throw new ArgumentNullException(nameof(vendingMachine), "Unknown vending machine.");
+            
+            vendingMachine.IsOn = false;
+        }        
+
+        public static bool UpdateVendingMachineInventory(Vendomatic vendingMachine)
+        {
+            if (vendingMachine == null) throw new ArgumentNullException(nameof(vendingMachine), "Unknown vending machine."); //TODO: Are exceptions being handled correctly?
+
             //TODO: Does the inventory file need to be set to 'copy to output directory'? It seems to be working w/o this...
             bool success = false;
             string currentDirectory = Environment.CurrentDirectory;
@@ -30,18 +39,24 @@
                         if (line != null)
                         {
                             string[] lineArray = line.Split("|");
-                            VendingMachineProduct productToAddToInventory = lineArray[3] switch
+                            Product productToAddToInventory = lineArray[3] switch
                             {
                                 "Chip" => new Chip(),
                                 "Candy" => new Candy(),
                                 "Drink" => new Drink(),
                                 "Gum" => new Gum(),
-                                _ => new VendingMachineProduct(),
+                                _ => new Product(),
                             };
                             productToAddToInventory.Name = lineArray[1].Trim();
                             productToAddToInventory.Price = Decimal.Parse(lineArray[2]);
-                            productToAddToInventory.Quantity = VendingMachineProduct.INITIAL_STARTING_QUANTITY;
-                            vendingMachine.Products.Add(lineArray[0].ToUpper(), productToAddToInventory);
+
+                            vendingMachine.Products.Add(lineArray[0], new List<Product>());  // throws exception if key already exists
+
+                            while (vendingMachine.Products[lineArray[0]].Count < Product.INITIAL_STARTING_QUANTITY)
+                            {
+                                vendingMachine.Products[lineArray[0]].Add(productToAddToInventory);
+                            }
+
                         }
                     }
                 }

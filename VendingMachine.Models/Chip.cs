@@ -1,10 +1,8 @@
 ﻿namespace VendingMachine.Models
 {
-    public class Chip : VendingMachineProduct
+    public class Chip : Product
     {
-        public override string ShowMessageToCustomerAfterSale()
-        {
-            return base.ShowMessageToCustomerAfterSale();
-        }
+        public override string ShowMessageToCustomerAfterSale() => base.ShowMessageToCustomerAfterSale();
+  
     }
 }
