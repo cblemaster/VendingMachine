@@ -3,12 +3,13 @@ using VendingMachine.Models;
 
 namespace VendingMachine.UI
 {
-    public class Helpers
+    public class OutputHelpers
     {
+        private const string NO_PRODUCTS_IN_INVENTORY_ERROR = "No products in inventory!";
+        
         public static string DisplayProducts(Vendomatic vm)
         {
-            if (vm == null) throw new ArgumentNullException(nameof(vm), "Unknown vending machine.");
-            if (vm.AreAllProductsEmpty()) throw new ArgumentOutOfRangeException(nameof(vm.Products), "No items in inventory!");  //TODO: Make error message strings into consts?
+            if (vm.AreAllProductsEmpty()) throw new ArgumentOutOfRangeException(nameof(vm.Products), NO_PRODUCTS_IN_INVENTORY_ERROR);
 
             StringBuilder sb = new();
 
@@ -20,5 +21,7 @@ namespace VendingMachine.UI
 
             return sb.ToString();
         }
+
+        public static string DisplayCustomerBalance(Vendomatic vm) => string.Format("Current balance: {0:C}", vm.CustomerBalance);
     }
 }

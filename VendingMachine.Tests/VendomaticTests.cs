@@ -1,29 +1,47 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using VendingMachine.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace VendingMachine.Models.Tests
 {
-    [TestClass()]
+    [TestClass]
     public class VendomaticTests
     {
-        [TestMethod()]
-        public void DisplayCustomerBalanceTest()
+        [TestMethod]
+        public void AreAllProductsEmptyTest_ProductsAreNotEmpty()
         {
-            //Arrange
-            string expected = "Current balance: $6.66";
+            //ARRANGE
+            bool expected = false;
 
-            //Act
-            Vendomatic vm = new();
-            vm.CustomerBalance = 6.66M;
-            var actual = vm.DisplayCustomerBalance();
-            
+            //ACT
+            Vendomatic vm = new()
+            {
+                Products = new()
+            {
+                { "A1", new()
+                    { new Chip() { Name = "Potato Crisps", Price = 3.05M } }
+                }
+            }
+            };
+
+            bool actual = vm.AreAllProductsEmpty();
+
+            //ASSERT
             Assert.AreEqual(expected, actual);
-            
+
+        }
+
+        [TestMethod]
+        public void AreAllProductsEmptyTest_ProductsAreEmpty()
+        {
+            //ARRANGE
+            bool expected = true;
+
+            //ACT
+            Vendomatic vm = new();
+            vm.Products.Clear();
+            bool actual = vm.AreAllProductsEmpty();
+
+            //ASSERT
+            Assert.AreEqual(expected, actual);
         }
     }
 }

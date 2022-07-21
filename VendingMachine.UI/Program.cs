@@ -6,4 +6,4 @@ using VendingMachine.Models;
 Vendomatic vm = new();
 Owner.UpdateVendingMachineInventory(vm);
 
-Console.WriteLine(VendingMachine.UI.Helpers.DisplayProducts(vm));
+Console.WriteLine(VendingMachine.UI.OutputHelpers.DisplayProducts(vm));

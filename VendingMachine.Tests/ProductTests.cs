@@ -2,10 +2,10 @@
 
 namespace VendingMachine.Models.Tests
 {
-    [TestClass()]
+    [TestClass]
     public class ProductTests
     {
-        [TestMethod()]
+        [TestMethod]
         public void ShowMessageToCustomerAfterSaleTest()
         {
             //TODO: Is this really testing anything...?
@@ -20,7 +20,7 @@ namespace VendingMachine.Models.Tests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void ToStringTest()
         {
             //TODO: Is this really testing anything...?
@@ -28,12 +28,11 @@ namespace VendingMachine.Models.Tests
             string expected = string.Format("{0,-20} {1:C}", "Potato Crisps", 3.05M);
 
             //Act
-            Product vmp = new() { Name = "Potato Crisps", Price = 3.05M, Quantity = 1 };
-            string actual = vmp.ToString();
+            Product product = new() { Name = "Potato Crisps", Price = 3.05M };
+            string actual = product.ToString();
 
             //Assert
             Assert.AreEqual(expected, actual);
-
         }
     }
 }

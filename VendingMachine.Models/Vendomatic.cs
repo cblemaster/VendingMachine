@@ -13,10 +13,10 @@
         public Dictionary<string, List<Product>> ProductsSoldToday { get; set; } = new();
         public bool IsOn { get; set; }
 
-        public string DisplayCustomerBalance => string.Format("Current balance: {0:C}", CustomerBalance);
-        
         public bool AreAllProductsEmpty()
         {
+            if (! Products.Any()) return true;
+            
             foreach (KeyValuePair<string, List<Product>> slot in Products)
             {
                 if (slot.Value.Any())
