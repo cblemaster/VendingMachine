@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace VendingMachine.Models.Tests
 {
@@ -67,8 +68,24 @@ namespace VendingMachine.Models.Tests
             //Assert
             Assert.AreEqual(expectedCustomerBalance, vm.CustomerBalance);
             Assert.AreEqual(expectedDailySales, vm.DailySales);
-            CollectionAssert.AreEqual(expectedProductsSoldToday, vm.ProductsSoldToday);   //TODO: Fix this failing collectionassert
-            Assert.AreEqual(4, vm.Products.Count);
+            Assert.AreEqual(4, vm.Products["A1"].Count);
+
+            //Do the collections have the same count?
+            Assert.AreEqual(expectedProductsSoldToday.Count, vm.ProductsSoldToday.Count);
+
+            //Are the product lists the same?
+            foreach (KeyValuePair<string, List<Product>> kvp in expectedProductsSoldToday)
+            {
+                Assert.AreEqual(expectedProductsSoldToday[kvp.Key].Count, vm.ProductsSoldToday[kvp.Key].Count);
+                Assert.AreEqual(expectedProductsSoldToday[kvp.Key].GetType(), vm.Products[kvp.Key].GetType());
+                foreach (Product product in expectedProductsSoldToday[kvp.Key])
+                {
+                    int productIndex = expectedProductsSoldToday[kvp.Key].IndexOf(product);
+                    Assert.AreEqual(product.GetType(), vm.Products[kvp.Key][productIndex].GetType());
+                    Assert.AreEqual(product.Name, vm.Products[kvp.Key][productIndex].Name);
+                    Assert.AreEqual(product.Price, vm.Products[kvp.Key][productIndex].Price);
+                }
+            }
         }
 
         [TestMethod]
@@ -125,6 +142,45 @@ namespace VendingMachine.Models.Tests
 
             //Assert
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => Customer.PurchaseProduct(vm, "A1"));
+        }
+
+        [TestMethod]
+        public void PurchaseProductTest_PurchaseAllProductsThenTryToPurchase()
+        {
+            //Arrange
+
+            //Act
+            Vendomatic vm = new();
+            Owner.UpdateVendingMachineInventory(vm);
+            foreach (KeyValuePair<string, List<Product>> kvp in vm.Products)
+            {
+                while (kvp.Value.Any())
+                {
+                    Customer.PurchaseProduct(vm, kvp.Key);
+                }
+            }
+
+            //Assert
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => Customer.PurchaseProduct(vm, "A1"));
+        }
+
+        [TestMethod]
+        public void PurchaseProductTest_PurchaseAllOfOneProductThenTryToPurchaseThatProduct()
+        {
+            //Arrange
+
+
+            //Act
+            Vendomatic vm = new();
+            Owner.UpdateVendingMachineInventory(vm);
+            while (vm.Products["A1"].Any())
+            {
+                Customer.PurchaseProduct(vm, "A1");
+            }
+
+            //Assert
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => Customer.PurchaseProduct(vm, "A1"));
+
         }
 
     }

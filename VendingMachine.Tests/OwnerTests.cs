@@ -80,7 +80,15 @@ namespace VendingMachine.Models.Tests
             //Are the product lists the same?
             foreach (KeyValuePair<string, List<Product>> kvp in expectedProducts)
             {
-                CollectionAssert.AreEqual(expectedProducts[kvp.Key], actualProducts[kvp.Key]);     //TODO: Fix this failing collectionassert
+                Assert.AreEqual(expectedProducts[kvp.Key].Count, actualProducts[kvp.Key].Count);
+                Assert.AreEqual(expectedProducts[kvp.Key].GetType(), actualProducts[kvp.Key].GetType());
+                foreach (Product product in expectedProducts[kvp.Key])
+                {
+                    int productIndex = expectedProducts[kvp.Key].IndexOf(product);
+                    Assert.AreEqual(product.GetType(), actualProducts[kvp.Key][productIndex].GetType());
+                    Assert.AreEqual(product.Name, actualProducts[kvp.Key][productIndex].Name);
+                    Assert.AreEqual(product.Price, actualProducts[kvp.Key][productIndex].Price);
+                }
             }
         }
     }

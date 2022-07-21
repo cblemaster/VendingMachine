@@ -11,7 +11,7 @@
 
         public static string PurchaseProduct(Vendomatic vm, string selectedSlotLocation)
         {
-            if (! vm.Products.ContainsKey(selectedSlotLocation)) throw new ArgumentOutOfRangeException(nameof(selectedSlotLocation), INVALID_SLOT_LOCATION_ERROR);
+            if (! vm.Products.ContainsKey(selectedSlotLocation)) throw new ArgumentOutOfRangeException(nameof(selectedSlotLocation), INVALID_SLOT_LOCATION_ERROR);     //TODO: Exception handling
             if (vm.CustomerBalance <= 0) throw new ArgumentOutOfRangeException(nameof(vm.CustomerBalance), CUSTOMER_BALANCE_ZERO_OR_NEGATIVE_ERROR);
             if (vm.AreAllProductsEmpty()) throw new ArgumentOutOfRangeException(nameof(vm.Products), ALL_PRODUCTS_EMPTY_ERROR);
             if (vm.Products[selectedSlotLocation].Count <= 0) throw new ArgumentOutOfRangeException(nameof(vm.Products), SELECTED_PRODUCT_EMPTY_ERROR);

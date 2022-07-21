@@ -2,12 +2,22 @@
 {
     public class Vendomatic
     {
+        public Vendomatic()
+        { 
+        }
+
+        public Vendomatic(Owner owner, Customer customer)
+        {
+            Owner = owner;
+            Customer = customer;
+        }
+        
         private const string VENDING_MACHINE_MANUFACTURER = "Umbrella Corp";
         private const string VENDING_MACHINE_MODEL = "Vendo-Matic 600";
 
-        private Customer Customer { get; set; }
+        private Customer? Customer { get;  set; }
         public decimal CustomerBalance { get; set; }
-        private Owner Owner { get; set; }
+        private Owner? Owner { get; set; }
         public Dictionary<string, List<Product>> Products { get; set; } = new();        
         public decimal DailySales { get; set; }
         public Dictionary<string, List<Product>> ProductsSoldToday { get; set; } = new();

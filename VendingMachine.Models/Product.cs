@@ -2,7 +2,7 @@
 {
     public class Product
     {
-        public string Name { get; set; }
+        public string Name { get; set; } = "";
         public decimal Price { get; set; }
         
         public const int INITIAL_STARTING_QUANTITY = 5;
