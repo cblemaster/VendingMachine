@@ -2,7 +2,6 @@
 {
     public class Chip : Product
     {
-        public override string ShowMessageToCustomerAfterSale() => base.ShowMessageToCustomerAfterSale();
-  
+        public override string ShowMessageToCustomerAfterSale() => "Crunch Crunch, Yum!";
     }
 }

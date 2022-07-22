@@ -34,5 +34,61 @@ namespace VendingMachine.Models.Tests
             //Assert
             Assert.AreEqual(expected, actual);
         }
+        [TestMethod]
+        public void GumTests_ShowMessageToCustomerAfterSaleTest()
+        {
+            //Arrange
+            string expected = "Chew Chew, Yum!";
+
+            //Act
+            Gum gum = new();
+            string actual = gum.ShowMessageToCustomerAfterSale();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void CandyTests_ShowMessageToCustomerAfterSaleTest()
+        {
+            //Arrange
+            string expected = "Munch Munch, Yum!";
+
+            //Act
+            Candy candy = new();
+            string actual = candy.ShowMessageToCustomerAfterSale();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void ChipTests_ShowMessageToCustomerAfterSaleTest()
+        {
+            //Arrange
+            string expected = "Crunch Crunch, Yum!";
+
+            //Act
+            Chip chip = new();
+            string actual = chip.ShowMessageToCustomerAfterSale();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        
+        [TestMethod]
+        public void DrinkTests_ShowMessageToCustomerAfterSaleTest()
+        {
+            //Arrange
+            string expected = "Glug Glug, Yum!";
+
+            //Act
+            Drink drink = new();
+            string actual = drink.ShowMessageToCustomerAfterSale();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

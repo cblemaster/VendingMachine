@@ -2,7 +2,6 @@
 {
     public class Gum : Product
     {
-        public override string ShowMessageToCustomerAfterSale() => base.ShowMessageToCustomerAfterSale();
-        
+        public override string ShowMessageToCustomerAfterSale() => "Chew Chew, Yum!";        
     }
 }

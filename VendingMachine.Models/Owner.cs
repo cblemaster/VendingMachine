@@ -62,6 +62,10 @@
             {
                 success = false;
             }
+            catch (Exception ex)
+            {
+
+            }
 
             return success;
         }

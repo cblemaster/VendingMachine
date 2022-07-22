@@ -2,7 +2,6 @@
 {
     public class Candy : Product
     {
-        public override string ShowMessageToCustomerAfterSale() => base.ShowMessageToCustomerAfterSale();
-        
+        public override string ShowMessageToCustomerAfterSale() => "Munch Munch, Yum!";        
     }
 }

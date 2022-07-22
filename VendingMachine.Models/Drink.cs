@@ -2,7 +2,6 @@
 {
     public class Drink : Product
     {
-        public override string ShowMessageToCustomerAfterSale() => base.ShowMessageToCustomerAfterSale();
-        
+        public override string ShowMessageToCustomerAfterSale() => "Glug Glug, Yum!";        
     }
 }
