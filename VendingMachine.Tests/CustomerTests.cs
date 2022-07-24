@@ -192,14 +192,28 @@ namespace VendingMachine.Models.Tests
         //      Customer.FormatChangeOutput()
         // FinishTransactions() is the only method that calls these two
 
+        [TestMethod]
+        public void FinishTransactionTest()
+        {
+            //Arrange
+            string expected = "Your change is: 17 quarters, 1 dime, 1 nickel";
+
+            //Act
+            Vendomatic vm = new() { CustomerBalance = 4.40M };
+            string actual = Customer.FinishTransaction(vm);
+
+            //Assert            
+            Assert.AreEqual(expected, actual);
+
+        }
+
         [TestMethod()]
         public void FinishTransactionTest_BalanceZero()
         {
             //Arrange
-            
+
             //Act
-            Vendomatic vm = new();
-            vm.CustomerBalance = 0M;
+            Vendomatic vm = new() { CustomerBalance = 0M };
 
             //Assert            
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => Customer.FinishTransaction(vm));
@@ -209,10 +223,9 @@ namespace VendingMachine.Models.Tests
         public void FinishTransactionTest_BalanceNegative()
         {
             //Arrange
-            
+
             //Act
-            Vendomatic vm = new();
-            vm.CustomerBalance = -7.69M;
+            Vendomatic vm = new() { CustomerBalance = -7.69M };
 
             //Assert            
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => Customer.FinishTransaction(vm));
@@ -225,8 +238,7 @@ namespace VendingMachine.Models.Tests
             string expected = "Your change is: 7 quarters";
 
             //Act
-            Vendomatic vm = new();
-            vm.CustomerBalance = 1.75M;
+            Vendomatic vm = new() { CustomerBalance = 1.75M };
             string actual = Customer.FinishTransaction(vm);
 
             //Assert            
@@ -240,8 +252,7 @@ namespace VendingMachine.Models.Tests
             string expected = "Your change is: 2 dimes";
 
             //Act
-            Vendomatic vm = new();
-            vm.CustomerBalance = 0.20M;
+            Vendomatic vm = new() { CustomerBalance = 0.20M };
             string actual = Customer.FinishTransaction(vm);
 
             //Assert            
@@ -256,8 +267,7 @@ namespace VendingMachine.Models.Tests
             string expected = "Your change is: 1 nickel";
 
             //Act
-            Vendomatic vm = new();
-            vm.CustomerBalance = 0.05M;
+            Vendomatic vm = new() { CustomerBalance = 0.05M };
             string actual = Customer.FinishTransaction(vm);
 
             //Assert            
@@ -271,8 +281,7 @@ namespace VendingMachine.Models.Tests
             string expected = "Your change is: 3 quarters, 2 dimes";
 
             //Act
-            Vendomatic vm = new();
-            vm.CustomerBalance = 0.95M;
+            Vendomatic vm = new() { CustomerBalance = 0.95M };
             string actual = Customer.FinishTransaction(vm);
 
             //Assert
@@ -286,8 +295,7 @@ namespace VendingMachine.Models.Tests
             string expected = "Your change is: 4 quarters, 1 nickel";   // can there ever be more than one nickel in any given change combination?
 
             //Act
-            Vendomatic vm = new();
-            vm.CustomerBalance = 1.05M;
+            Vendomatic vm = new() { CustomerBalance = 1.05M };
             string actual = Customer.FinishTransaction(vm);
 
             //Assert            
@@ -302,8 +310,7 @@ namespace VendingMachine.Models.Tests
             string expected = "Your change is: 1 dime, 1 nickel";
 
             //Act
-            Vendomatic vm = new();
-            vm.CustomerBalance = 0.15M;
+            Vendomatic vm = new() { CustomerBalance = 0.15M };
             string actual = Customer.FinishTransaction(vm);
 
             //Assert            
