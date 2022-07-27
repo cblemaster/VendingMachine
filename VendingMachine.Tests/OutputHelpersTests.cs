@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using VendingMachine.Models;
+using VendingMachine.UI;
 
 namespace VendingMachine.UI.Tests
 {

@@ -12,8 +12,8 @@
             Customer = customer;
         }
         
-        private const string VENDING_MACHINE_MANUFACTURER = "Umbrella Corp";
-        private const string VENDING_MACHINE_MODEL = "Vendo-Matic 600";
+        public const string VENDING_MACHINE_MANUFACTURER = "Umbrella Corp";
+        public const string VENDING_MACHINE_MODEL = "Vendo-Matic 600";
 
         private Customer? Customer { get;  set; }
         public decimal CustomerBalance { get; set; }

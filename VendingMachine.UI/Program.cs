@@ -1,7 +1,10 @@
 ﻿// See https://aka.ms/new-console-template for more information
-//Console.WriteLine("Hello, World!");
 
 using VendingMachine.Models;
+
+Console.WriteLine("Welcome to " + Vendomatic.VENDING_MACHINE_MODEL + "!");
+Console.WriteLine("Brought to you by " + Vendomatic.VENDING_MACHINE_MANUFACTURER);
+
 
 // ** Display products tests
 //Vendomatic vm = new();
@@ -25,4 +28,23 @@ using VendingMachine.Models;
 //af.WriteChangeDispensedToAuditLog(8.50M, vm.CustomerBalance);
 
 //af.WriteAuditLogToFile();
+
+// ** Sales report tests
+//Vendomatic vm = new();
+//Owner.UpdateVendingMachineInventory(vm);
+
+//Customer.DepositMoney(vm, 50);
+//SalesReport sr = new();
+
+//Customer.PurchaseProduct(vm, "B2");
+//Customer.PurchaseProduct(vm, "B2");
+//Customer.PurchaseProduct(vm, "A2");
+//Customer.PurchaseProduct(vm, "C1");
+//Customer.PurchaseProduct(vm, "D4");
+
+//sr.CreateSalesLogFromVendingMachineDailySales(vm);
+//sr.WriteSalesReportToFile();
+//decimal dailySales = vm.DailySales;   // should be $6.45
+
+
 
