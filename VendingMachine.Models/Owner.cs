@@ -18,7 +18,6 @@
 
         public static bool UpdateVendingMachineInventory(Vendomatic vm)
         {
-            //TODO: Does the inventory file need to be set to 'copy to output directory'? It seems to be working w/o this...
             bool success = false;
             string currentDirectory = Environment.CurrentDirectory;
             string fullInventoryFilePath = Path.Combine(currentDirectory, INVENTORY_FILE_PATH, INVENTORY_FILE_NAME);

@@ -45,7 +45,10 @@ namespace VendingMachine.Models
             else
             {
                 vm.ProductsSoldToday.Add(selectedSlotLocation, new() { purchasedProduct });
-            }            
+            }
+
+            AuditFile af = new();
+            af.FormatProductSoldForAuditFile(purchasedProduct, vm.CustomerBalance, selectedSlotLocation);
                  
             return purchasedProduct.ShowMessageToCustomerAfterSale();            
         }
@@ -55,15 +58,17 @@ namespace VendingMachine.Models
             if (amountDeposited <= 0) throw new ArgumentOutOfRangeException(nameof(amountDeposited), DEPOSIT_AMOUNT_ZERO_OR_NEGATIVE_ERROR);
 
             vm.CustomerBalance += amountDeposited;
-            // TODO: Caller needs to call outputhelper.displaycustomerbalance after this!
+
+            AuditFile af = new();
+            af.FormatDepositForAuditFile(amountDeposited, vm.CustomerBalance);
         }
 
         public static string FinishTransaction(Vendomatic vm)
         {
-            //TODO: Call OutputHelper.DisplayCustomerBalance before this!
-            
             if (vm.CustomerBalance <= 0) throw new ArgumentOutOfRangeException(nameof(vm.CustomerBalance), NO_CHANGE_TO_DISPENSE_ERROR);
 
+            decimal changeDispensed = vm.CustomerBalance;
+            
             int numQuarters = CalculateCoinCount(vm.CustomerBalance, Coins.Quarter);
             vm.CustomerBalance -= numQuarters * (((int)Coins.Quarter) / 100M);
 
@@ -75,6 +80,9 @@ namespace VendingMachine.Models
 
             if (vm.CustomerBalance != 0) throw new ArgumentOutOfRangeException(nameof(vm.CustomerBalance), CALCULATING_CHANGE_ERROR);
 
+            AuditFile af = new();
+            af.FormatChangeDispensedForAuditFile(changeDispensed, vm.CustomerBalance);
+            
             return FormatChangeOutput(numQuarters, numDimes, numNickels);
         }
 

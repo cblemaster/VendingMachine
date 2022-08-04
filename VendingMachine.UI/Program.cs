@@ -22,8 +22,6 @@ ui.Output("Brought to you by " + Vendomatic.VENDING_MACHINE_MANUFACTURER);
 Vendomatic vm = new();
 Owner.TurnOnVendingMachine(vm);  // also calls UpdateVendingMachineInventory()
 
-AuditFile af = new();
-
 while (vm.IsOn)
 {
     string mainMenuSelection = (string)ui.PromptForSelection(MAIN_MENU_OPTIONS);  // main menu prompt for selection
@@ -47,36 +45,32 @@ while (vm.IsOn)
                 }
                 Customer.DepositMoney(vm, amountDeposited);
                 ui.Output(OutputHelpers.DisplayCustomerBalance(vm));
-                af.WriteDepositToAuditLog(amountDeposited, vm.CustomerBalance);
             }
             if (purchaseMenuSelection == PURCHASE_MENU_OPTION_SELECT_PRODUCT)
             {
                 string slotSelection = string.Empty;
-                while (slotSelection == string.Empty || !vm.Products.ContainsKey(slotSelection))
+                while (slotSelection == string.Empty)
                 {
                     ui.Output("Enter slot for the product you wish to purchase");
+                    slotSelection = Console.ReadLine();
                 }
-                Customer.PurchaseProduct(vm, slotSelection);
-                af.WriteProductSoldToAuditLog(vm.Products[slotSelection][0], vm.CustomerBalance, slotSelection);
-                OutputHelpers.DisplayCustomerBalance(vm);
+                ui.Output(Customer.PurchaseProduct(vm, slotSelection));
+                ui.Output(OutputHelpers.DisplayCustomerBalance(vm));
             }
             if (purchaseMenuSelection == PURCHASE_MENU_OPTION_FINISH_TRANSACTION)
             {
-                decimal change = vm.CustomerBalance;
+                ui.Output(OutputHelpers.DisplayCustomerBalance(vm));
                 ui.Output(Customer.FinishTransaction(vm));
-                af.WriteChangeDispensedToAuditLog(change, vm.CustomerBalance);
                 isCustomerPurchasing = false;
             }
         }
     }
     if (mainMenuSelection == MAIN_MENU_OPTION_EXIT)
     {
-        //break;
         Owner.TurnOffVendingMachine(vm);
     }
     if (mainMenuSelection == MAIN_MENU_OPTION_SALES_REPORT)
     {
-        af.WriteAuditLogToFile();  //TO DO: Audit file functionality needs re-written
         
         SalesReport sr = new();
         sr.CreateSalesLogFromVendingMachineDailySales(vm);

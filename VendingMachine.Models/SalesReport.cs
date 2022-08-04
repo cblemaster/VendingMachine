@@ -41,6 +41,7 @@ namespace VendingMachine.Models
             {
                 using StreamWriter sw = new(fullSalesReportPath, false);
                 sw.WriteLine(this.SalesLog);
+                SalesLog.Clear();
             }
             catch (IOException ex)
             {
@@ -52,9 +53,7 @@ namespace VendingMachine.Models
             }
             finally
             {
-                // TODO: Does the SalesReport sb need to be cleared after writing to file?
-                // Is this the right way to do it?
-                SalesLog.Clear();
+                
             }
         }
     }
