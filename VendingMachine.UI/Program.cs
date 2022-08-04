@@ -43,8 +43,15 @@ while (vm.IsOn)
                     ui.Output("Please enter amount to deposit.");
                     int.TryParse(Console.ReadLine(), out amountDeposited);
                 }
-                Customer.DepositMoney(vm, amountDeposited);
-                ui.Output(OutputHelpers.DisplayCustomerBalance(vm));
+                try
+                {
+                    Customer.DepositMoney(vm, amountDeposited);
+                    ui.Output(OutputHelpers.DisplayCustomerBalance(vm));
+                }
+                catch (ArgumentOutOfRangeException ex)
+                {
+                    ui.Output(ex.Message);
+                }                
             }
             if (purchaseMenuSelection == PURCHASE_MENU_OPTION_SELECT_PRODUCT)
             {
@@ -54,14 +61,28 @@ while (vm.IsOn)
                     ui.Output("Enter slot for the product you wish to purchase");
                     slotSelection = Console.ReadLine();
                 }
-                ui.Output(Customer.PurchaseProduct(vm, slotSelection));
-                ui.Output(OutputHelpers.DisplayCustomerBalance(vm));
+                try
+                {
+                    ui.Output(Customer.PurchaseProduct(vm, slotSelection));
+                    ui.Output(OutputHelpers.DisplayCustomerBalance(vm));
+                }
+                catch (ArgumentOutOfRangeException ex)
+                {
+                    ui.Output(ex.Message);
+                }               
             }
             if (purchaseMenuSelection == PURCHASE_MENU_OPTION_FINISH_TRANSACTION)
             {
                 ui.Output(OutputHelpers.DisplayCustomerBalance(vm));
-                ui.Output(Customer.FinishTransaction(vm));
-                isCustomerPurchasing = false;
+                try
+                {
+                    ui.Output(Customer.FinishTransaction(vm));
+                    isCustomerPurchasing = false;
+                }
+                catch (ArgumentOutOfRangeException ex)
+                {
+                    ui.Output(ex.Message);
+                }                
             }
         }
     }
@@ -71,10 +92,16 @@ while (vm.IsOn)
     }
     if (mainMenuSelection == MAIN_MENU_OPTION_SALES_REPORT)
     {
-        
-        SalesReport sr = new();
-        sr.CreateSalesLogFromVendingMachineDailySales(vm);
-        sr.WriteSalesReportToFile();
+        try
+        {
+            SalesReport sr = new();
+            sr.CreateSalesLogFromVendingMachineDailySales(vm);
+            sr.WriteSalesReportToFile();
+        }
+        catch (ArgumentOutOfRangeException ex)
+        {
+            ui.Output(ex.Message);
+        }       
     }
     
 }

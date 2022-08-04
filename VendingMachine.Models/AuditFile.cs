@@ -4,7 +4,7 @@ namespace VendingMachine.Models
 {
     public class AuditFile
     {
-        private readonly string AUDIT_FILE_NAME = ("AuditFile_" + DateTime.Now.ToString("M-d-yyyy H.mm.ss") + ".txt").Replace(" ", "_");
+        private readonly string AUDIT_FILE_NAME = ("AuditFile_" + DateTime.Now.ToString("M-d-yyyy") + ".txt").Replace(" ", "_");
         private const string AUDIT_FILE_PATH = @"..\..\..\..\Reports";
 
         //These methods are tested visually in Audit File output
@@ -46,10 +46,6 @@ namespace VendingMachine.Models
                 sw.WriteLine(line);
             }
             catch (IOException ex)
-            {
-                // TODO: Exception handling
-            }
-            catch (Exception ex)
             {
                 // TODO: Exception handling
             }

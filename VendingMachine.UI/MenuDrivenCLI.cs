@@ -22,7 +22,7 @@ public class MenuDrivenCLI : IBasicUserInterface
     public Object PromptForSelection(Object[] options)
     {
         Object choice = null;
-        while(choice==null)
+        while(choice == null)
         {
             DisplayMenuOptions(options);
             choice = GetChoiceFromUserInput(options);
@@ -36,7 +36,7 @@ public class MenuDrivenCLI : IBasicUserInterface
     /// </summary>
     /// <param name="options"></param>
     /// <returns>the object selected or null</returns>
-    private Object GetChoiceFromUserInput(Object[] options)
+    private static Object GetChoiceFromUserInput(Object[] options)
     {
         Object choice = null;
         String userInput = Console.ReadLine();
@@ -63,7 +63,7 @@ public class MenuDrivenCLI : IBasicUserInterface
     /// Display all of the menu options with option numbers starting at 1
     /// </summary>
     /// <param name="options">The options to display. Must have ToString overriden or be strings</param>
-    private void DisplayMenuOptions(Object[] options)
+    private static void DisplayMenuOptions(Object[] options)
     {
 
         Console.WriteLine();

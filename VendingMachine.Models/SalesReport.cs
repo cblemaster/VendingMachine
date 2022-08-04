@@ -14,22 +14,29 @@ namespace VendingMachine.Models
 
         public void CreateSalesLogFromVendingMachineDailySales(Vendomatic vm)
         {
-            if (! vm.ProductsSoldToday.Any()) throw new ArgumentOutOfRangeException(nameof(vm.ProductsSoldToday), "No products sold today!");     //TODO: Exception handling
-            if (vm.DailySales <= 0) throw new ArgumentOutOfRangeException(nameof(vm.DailySales), "No products sold today!");     //TODO: Exception handling
-
-            SalesLog.Append(string.Format("{0,-10}{1,25}{2,20}{3,20}", "Slot", "Product Name", "Price", "Qty Sold"));
-            SalesLog.Append('\n');
-
-            foreach (KeyValuePair<string, List<Product>> slot in vm.ProductsSoldToday.OrderBy(p => p.Key))
+            try
             {
-                if (slot.Value.Any())
+                if (!vm.ProductsSoldToday.Any()) throw new ArgumentOutOfRangeException(nameof(vm.ProductsSoldToday), "No products sold today!");
+                if (vm.DailySales <= 0) throw new ArgumentOutOfRangeException(nameof(vm.DailySales), "No products sold today!");
+
+                SalesLog.Append(string.Format("{0,-10}{1,25}{2,20}{3,20}", "Slot", "Product Name", "Price", "Qty Sold"));
+                SalesLog.Append('\n');
+
+                foreach (KeyValuePair<string, List<Product>> slot in vm.ProductsSoldToday.OrderBy(p => p.Key))
                 {
-                    SalesLog.Append(string.Format("{0,-10}{1,25}{2,20}{3,20}",slot.Key, slot.Value[0].Name, slot.Value[0].Price.ToString("C"), slot.Value.Count));
-                    SalesLog.Append('\n');
+                    if (slot.Value.Any())
+                    {
+                        SalesLog.Append(string.Format("{0,-10}{1,25}{2,20}{3,20}", slot.Key, slot.Value[0].Name, slot.Value[0].Price.ToString("C"), slot.Value.Count));
+                        SalesLog.Append('\n');
+                    }
                 }
+
+                SalesLog.Append("\n**TOTAL SALES** " + vm.DailySales.ToString("C"));
             }
-            
-            SalesLog.Append("\n**TOTAL SALES** " + vm.DailySales.ToString("C"));
+            catch (ArgumentOutOfRangeException ex)
+            {
+                throw ex;
+            }
         }
 
         public void WriteSalesReportToFile()
@@ -46,14 +53,6 @@ namespace VendingMachine.Models
             catch (IOException ex)
             {
                 // TODO: Exception handling
-            }
-            catch (Exception ex)
-            {
-                // TODO: Exception handling
-            }
-            finally
-            {
-                
             }
         }
     }
