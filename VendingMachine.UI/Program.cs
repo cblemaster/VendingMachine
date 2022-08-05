@@ -1,5 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+// TODO: Re-organize and refactor
+
 using VendingMachine.Models;
 using VendingMachine.UI;
 
@@ -40,7 +42,7 @@ while (vm.IsOn)
                 int amountDeposited = 0;
                 while (amountDeposited <= 0)
                 {
-                    ui.Output("Please enter amount to deposit.");
+                    ui.Output("Please enter amount to deposit, whole dollars only.");
                     int.TryParse(Console.ReadLine(), out amountDeposited);
                 }
                 try
@@ -76,13 +78,13 @@ while (vm.IsOn)
                 ui.Output(OutputHelpers.DisplayCustomerBalance(vm));
                 try
                 {
-                    ui.Output(Customer.FinishTransaction(vm));
-                    isCustomerPurchasing = false;
+                    ui.Output(Customer.FinishTransaction(vm));                    
                 }
                 catch (ArgumentOutOfRangeException ex)
                 {
                     ui.Output(ex.Message);
-                }                
+                }
+                isCustomerPurchasing = false;
             }
         }
     }
