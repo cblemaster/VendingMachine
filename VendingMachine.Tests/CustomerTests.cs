@@ -1,5 +1,4 @@
-﻿using VendingMachine.Models;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -185,6 +184,20 @@ namespace VendingMachine.Models.Tests
 
         }
 
+        [TestMethod()]
+        public void PurchaseProductProductPriceExceedsCustomerBalance()
+        {
+            //Arrange
+
+            //Act
+            Vendomatic vm = new();
+            Owner.UpdateVendingMachineInventory(vm);
+            Customer.DepositMoney(vm, 1);
+
+            //Assert
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => Customer.PurchaseProduct(vm, "A1"));
+        }
+
 
 
         // NOTE that the FinishTransaction tests also test these methods:
@@ -316,7 +329,6 @@ namespace VendingMachine.Models.Tests
             //Assert            
             Assert.AreEqual(expected, actual);
 
-        }
-
+        }        
     }
 }
