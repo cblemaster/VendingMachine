@@ -1,6 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using System.Data;
 using System.Text;
 using VendingMachine.Models;
 using VendingMachine.Services;

@@ -29,7 +29,7 @@ internal static class Helpers
         decimal dimeVal = (int)Coins.Dime * change.dimes / 100;
         decimal nickelVal = (int)Coins.Nickel * change.nickels / 100;
         decimal totalChange = quarterVal + dimeVal + nickelVal;
-        
+
         return totalChange == amountDeposited;
     }
 }

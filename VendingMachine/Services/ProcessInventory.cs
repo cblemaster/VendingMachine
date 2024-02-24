@@ -15,12 +15,12 @@ internal static class ProcessInventory
         try
         {
             using StreamReader sr = new(fullInventoryFilePath);
-            
+
             while (sr is not null && !sr.EndOfStream)
             {
                 string? inventoryLine = sr.ReadLine();
-                
-                (string SlotIdentifier, string Label, decimal Price, string Type, bool IsValid) inventoryLineValues = 
+
+                (string SlotIdentifier, string Label, decimal Price, string Type, bool IsValid) inventoryLineValues =
                     ProcessInventoryLine(inventoryLine);
 
                 Snack snack = CreateSnack(inventoryLineValues);

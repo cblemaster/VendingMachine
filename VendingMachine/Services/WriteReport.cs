@@ -25,7 +25,7 @@ internal static class WriteReport
         else
         {
             sb.AppendLine(string.Format("{0,-25}{1,20}{2,20}", "Product Name", "Price", "Qty Sold"));
-            
+
             foreach (Snack snack in vm.SnacksSoldToday.Distinct())
             {
                 sb.AppendLine(string.Format("{0,-25}{1,20:C}{2,20}", snack.Label, snack.Price, vm.SnacksSoldToday.Count(s => s.Label == snack.Label)));

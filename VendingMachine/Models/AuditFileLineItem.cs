@@ -9,5 +9,5 @@ internal static class AuditFileLineItem
     internal static string SnackSold(Snack snack, string slotIdentifier, decimal totalDeposited) =>
         $"{Helpers.FormatedDateTimeNow}|SNACK SOLD: {snack.Label}|SLOT: {slotIdentifier}|SNACK PRICE: {snack.Price:C}|TOTAL DEPOSTED: {totalDeposited:C}";
     internal static string ChangeDispensed(decimal change, decimal totalDeposited) =>
-        $"{Helpers.FormatedDateTimeNow}|CHANGE DISPENSED: {change:C}|TOTAL DEPOSITED: {totalDeposited:C}";        
+        $"{Helpers.FormatedDateTimeNow}|CHANGE DISPENSED: {change:C}|TOTAL DEPOSITED: {totalDeposited:C}";
 }
