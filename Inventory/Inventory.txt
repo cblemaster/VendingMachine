@@ -1,16 +1,16 @@
-A1|Potato Crisps|3.05|Chip
-A2|Stackers|1.45|Chip
-A3|Grain Waves|2.75|Chip
-A4|Cloud Popcorn|3.65|Chip
-B1|Moonpie|1.80|Candy
-B2|Cowtales|1.50|Candy
-B3|Wonka Bar|1.50|Candy
-B4|Crunchie|1.75|Candy
+A1|Potato Crisps|3.05|Chips
+A2|Prongles|1.45|Chips
+A3|Boogles|2.75|Chips
+A4|Veggie Crisps|3.65|Chips
+B1|Lieutenants Wafers|1.80|Crackers
+B2|Chweesits|1.50|Crackers
+B3|Pita Squares|1.50|Crackers
+B4|Nyblets|1.75|Crackers
 C1|Cola|1.25|Drink
-C2|Dr. Salt|1.50|Drink
-C3|Mountain Melter|1.50|Drink
-C4|Heavy|1.50|Drink
-D1|U-Chews|0.85|Gum
-D2|Little League Chew|0.95|Gum
-D3|Chiclets|0.75|Gum
-D4|Triplemint|0.75|Gum
+C2|Dr. Rumble|1.50|Drink
+C3|Mountain Condensate|1.50|Drink
+C4|EnergyStroke|1.50|Drink
+D1|Cinnamon Pastry|0.85|Poptart
+D2|Strawberry Pastry|0.95|Poptart
+D3|Blueberry Pastry|0.75|Poptart
+D4|Apple Pastry|0.75|Poptart
