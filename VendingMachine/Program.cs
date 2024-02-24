@@ -16,15 +16,12 @@ const string PURCHASE_MENU_OPTION_FEED_MONEY = "Feed Money";
 const string PURCHASE_MENU_OPTION_SELECT_SNACK = "Select snack";
 const string PURCHASE_MENU_OPTION_FINISH_TRANSACTION = "Finish transaction";
 string[] PURCHASE_MENU_OPTIONS = [PURCHASE_MENU_OPTION_FEED_MONEY, PURCHASE_MENU_OPTION_SELECT_SNACK, PURCHASE_MENU_OPTION_FINISH_TRANSACTION];
-
-const string MODEL = "Vendo-Matic 600";
-const string MANUFACTURER = "Umbrella Corp.";
 #endregion
 
 MenuDrivenCLI ui = new();
 
-ui.Output($"Welcome to {MODEL} !");
-ui.Output($"Brought to you by {MANUFACTURER}");
+ui.Output($"Welcome to {Vendomatic.VENDING_MACHINE_MODEL} !");
+ui.Output($"Brought to you by {Vendomatic.VENDING_MACHINE_MANUFACTURER}");
 
 VendingMachine.Models.Vendomatic vm = new();
 

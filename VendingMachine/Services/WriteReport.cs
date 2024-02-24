@@ -11,7 +11,7 @@ internal static class WriteReport
     private const string SALES_REPORT_HEADER = "*** SALES REPORT FOR VENDING MACHINE ***";
     private const string NO_SNACKS_SOLD_TODAY = "* No snacks sold today! *";
 
-    internal static StringBuilder CreateSalesReport(VendingMachine.Models.Vendomatic vm)
+    internal static StringBuilder CreateSalesReport(Vendomatic vm)
     {
         StringBuilder sb = new();
 

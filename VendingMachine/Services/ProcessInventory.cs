@@ -7,7 +7,7 @@ internal static class ProcessInventory
     private const string INVENTORY_FILE_NAME = "Inventory.txt";
     private const string INVENTORY_FILE_PATH = @"..\..\..\..\Inventory";
 
-    internal static void UpdateVendingMachineInventory(VendingMachine.Models.Vendomatic vm)
+    internal static void UpdateVendingMachineInventory(Vendomatic vm)
     {
         string currentDirectory = Environment.CurrentDirectory;
         string fullInventoryFilePath = Path.Combine(currentDirectory, INVENTORY_FILE_PATH, INVENTORY_FILE_NAME);

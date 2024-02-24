@@ -9,8 +9,8 @@ internal sealed class Vendomatic
     private const string NO_MONEY_DEPOSITED = "Please deposit money before purchasing snack.";
     private const string NO_CHANGE_TO_DISPENSE = "No change to dispense.";
     private const string ALL_SNACKS_SOLD_OUT = "All snacks sold out!";
-    private const string VENDING_MACHINE_MANUFACTURER = "Umbrella Corp";
-    private const string VENDING_MACHINE_MODEL = "Vendo-Matic 600";
+    public const string VENDING_MACHINE_MANUFACTURER = "Umbrella Corp.";
+    public const string VENDING_MACHINE_MODEL = "Vendo-Matic 600";
     public const int SNACKS_PER_SLOT = 5;
     #endregion
 
