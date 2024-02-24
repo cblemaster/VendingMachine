@@ -1,9 +1,10 @@
-﻿namespace VendingMachine.Models
+﻿using VendingMachine.Services;
+
+namespace VendingMachine.Models;
+
+internal static class Owner
 {
-    internal class Owner
-    {
-        internal void TurnOnVendingMachine() { throw new NotImplementedException(); }
-        internal void TurnOffVendingMachine() { throw new NotImplementedException(); }
-        internal void UpdateVendingMachineInventory() { throw new NotImplementedException(); }
-    }
+    internal static void TurnVendingMachineOn(Vendomatic vm) => vm.IsOn = true;
+    internal static void TurnVendingMachineOff(Vendomatic vm) => vm.IsOn = false;
+    internal static void UpdateVendingMachineInventory(Vendomatic vm) => ProcessInventory.UpdateVendingMachineInventory(vm);
 }
