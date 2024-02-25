@@ -42,10 +42,12 @@ public class MenuDrivenCLI : IBasicUserInterface
         string userInput = Console.ReadLine()!;
         try
         {
-            int selectedOption = int.Parse(userInput);
-            if (selectedOption > 0 && selectedOption <= options.Length)
+            if (int.TryParse(userInput, out int selectedOption))
             {
-                choice = options[selectedOption - 1];
+                if (selectedOption > 0 && selectedOption <= options.Length)
+                {
+                    choice = options[selectedOption - 1];
+                }
             }
         }
         catch (Exception)

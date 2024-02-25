@@ -20,9 +20,7 @@ internal sealed class Vendomatic
     internal ICollection<Snack> SnacksSoldToday { get; set; } = Enumerable.Empty<Snack>().ToList();
     internal StringBuilder AuditFile { get; set; } = new();
     internal decimal DailySales { get; set; }
-
     internal bool AreAllSnacksSoldOut => Slots.All(s => s.IsSoldOut);
-    internal bool CustomerHasBalance => AmountDeposited > 0;
 
     internal string DisplaySnacks()
     {

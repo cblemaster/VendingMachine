@@ -2,7 +2,7 @@
 
 internal static class Helpers
 {
-    internal static string FormatedDateTimeNow => DateTime.Now.ToString("M-d-yyyy H:mm:ss");
+    internal static string FormatedDateTimeNow => DateTime.Now.ToString("M-d-yyyy H_mm_ss");
 
     internal static (int Quarters, int Dimes, int Nickels) CountCoinsForChange(decimal change)
     {
@@ -25,9 +25,9 @@ internal static class Helpers
 
     internal static bool ChangeDispensedReducesAmountDepositedToZero((int quarters, int dimes, int nickels) change, decimal amountDeposited)
     {
-        decimal quarterVal = (int)Coins.Quarter * change.quarters / 100;
-        decimal dimeVal = (int)Coins.Dime * change.dimes / 100;
-        decimal nickelVal = (int)Coins.Nickel * change.nickels / 100;
+        decimal quarterVal = (int)Coins.Quarter * (decimal)change.quarters / 100;
+        decimal dimeVal = (int)Coins.Dime * (decimal)change.dimes / 100;
+        decimal nickelVal = (int)Coins.Nickel * (decimal)change.nickels / 100;
         decimal totalChange = quarterVal + dimeVal + nickelVal;
 
         return totalChange == amountDeposited;

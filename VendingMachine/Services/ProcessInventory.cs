@@ -7,10 +7,12 @@ internal static class ProcessInventory
     private const string INVENTORY_FILE_NAME = "Inventory.txt";
     private const string INVENTORY_FILE_PATH = @"..\..\..\..\Inventory";
 
-    internal static void UpdateVendingMachineInventory(Vendomatic vm)
+    internal static IEnumerable<Slot> CreateVendingMachineInventory(Vendomatic vm)
     {
         string currentDirectory = Environment.CurrentDirectory;
         string fullInventoryFilePath = Path.Combine(currentDirectory, INVENTORY_FILE_PATH, INVENTORY_FILE_NAME);
+
+        List<Slot> inventory = [];
 
         try
         {
@@ -25,13 +27,17 @@ internal static class ProcessInventory
 
                 Snack snack = CreateSnack(inventoryLineValues);
 
-                Slot slot = vm.Slots.Single(s => s.Identifier == inventoryLineValues.SlotIdentifier);
+                Slot slot = new() { Identifier = inventoryLineValues.SlotIdentifier };
 
                 while (slot.Snacks.Count < VendingMachine.Models.Vendomatic.SNACKS_PER_SLOT)
                 {
                     slot.Snacks.Push(snack);
                 }
+
+                inventory.Add(slot);
             }
+
+            return inventory.AsEnumerable<Slot>();
         }
         catch (IOException) { throw; }
 

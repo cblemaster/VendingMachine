@@ -1,6 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-
-using System.Text;
+﻿using System.Text;
 using VendingMachine.Models;
 using VendingMachine.Services;
 using VendingMachine.UI;
@@ -26,14 +24,15 @@ ui.Output($"Brought to you by {Vendomatic.VENDING_MACHINE_MANUFACTURER}");
 VendingMachine.Models.Vendomatic vm = new();
 
 Owner.TurnVendingMachineOn(vm);
-Owner.UpdateVendingMachineInventory(vm);
+IEnumerable<Slot> inventory = Owner.UpdateVendingMachineInventory(vm);
+vm.Slots = inventory;
 
 while (vm.IsOn)
 {
     string mainMenuSelection = (string)ui.PromptForSelection(MAIN_MENU_OPTIONS);
     if (mainMenuSelection == MAIN_MENU_OPTION_DISPLAY_SNACKS)
     {
-        ui.Output(vm.DisplaySnacks());
+        ui.Output(vm.DisplaySnacks().ToString());
     }
     if (mainMenuSelection == MAIN_MENU_OPTION_PURCHASE_SNACKS)
     {
@@ -69,7 +68,7 @@ while (vm.IsOn)
                 }
                 try
                 {
-                    ui.Output(Customer.SelectSnack(vm, vm.Slots.Single(s => s.Identifier == slotSelection)));
+                    ui.Output(Customer.SelectSnack(vm, vm.Slots.Single(s => s.Identifier.Equals(slotSelection, StringComparison.CurrentCultureIgnoreCase))));
                     ui.Output(vm.DisplayAmountDeposited());
                 }
                 catch (ArgumentOutOfRangeException ex)
@@ -95,6 +94,7 @@ while (vm.IsOn)
     if (mainMenuSelection == MAIN_MENU_OPTION_EXIT)
     {
         Owner.TurnVendingMachineOff(vm);
+        WriteReport.WriteAuditFile(vm.AuditFile);
     }
     if (mainMenuSelection == MAIN_MENU_OPTION_SALES_REPORT)
     {
