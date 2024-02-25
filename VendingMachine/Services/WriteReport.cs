@@ -5,12 +5,13 @@ namespace VendingMachine.Services;
 
 internal static class WriteReport
 {
-    private static readonly string SalesReportName = ($"SalesReport_{Helpers.FormatedDateTimeNow}.txt").Replace(" ", "_");
+    #region constants
+    private static readonly string SALES_REPORT_FILENAME = ($"SalesReport_{Helpers.FormatedDateTimeNow}.txt").Replace(" ", "_");
     private const string REPORTS_FILE_PATH = @"..\..\..\..\Reports";
-    private static readonly string AuditFileName = ($"AuditFile_{Helpers.FormatedDateTimeNow}.txt").Replace(" ", "_");
+    private static readonly string AUDIT_FILE_FILENAME = ($"AuditFile_{Helpers.FormatedDateTimeNow}.txt").Replace(" ", "_");
     private const string SALES_REPORT_HEADER = "*** SALES REPORT FOR VENDING MACHINE ***";
     private const string NO_SNACKS_SOLD_TODAY = "* No snacks sold today! *";
-
+    #endregion
     internal static StringBuilder CreateSalesReport(Vendomatic vm)
     {
         StringBuilder sb = new();
@@ -38,25 +39,25 @@ internal static class WriteReport
     }
     internal static void WriteSalesReport(StringBuilder salesReport)
     {
-        string currentDirectory = Environment.CurrentDirectory;
-        string fullSalesReportPath = Path.Combine(currentDirectory, REPORTS_FILE_PATH, SalesReportName);
-
-        try
-        {
-            using StreamWriter sw = new(fullSalesReportPath, false);
-            sw?.WriteLine(salesReport);
-        }
-        catch (IOException) { throw; }
+        string pathToAuditFile = GetReportPath(SALES_REPORT_FILENAME);
+        WriteReportToFile(pathToAuditFile, salesReport);
     }
-    internal static void WriteAuditFile(StringBuilder auditReport)
+    internal static void WriteAuditFile(StringBuilder auditFile)
+    {
+        string pathToAuditFile = GetReportPath(AUDIT_FILE_FILENAME);
+        WriteReportToFile(pathToAuditFile, auditFile);
+    }
+    internal static string GetReportPath(string file)
     {
         string currentDirectory = Environment.CurrentDirectory;
-        string fullAuditFilePath = Path.Combine(currentDirectory, REPORTS_FILE_PATH, AuditFileName);
-
+        return Path.Combine(currentDirectory, REPORTS_FILE_PATH, file);
+    }
+    internal static void WriteReportToFile(string path, StringBuilder sb)
+    {
         try
         {
-            using StreamWriter sw = new(fullAuditFilePath, false);
-            sw?.WriteLine(auditReport);
+            using StreamWriter sw = new(path, false);
+            sw.WriteLine(sb);
         }
         catch (IOException) { throw; }
     }
