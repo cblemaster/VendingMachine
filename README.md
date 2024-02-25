@@ -11,6 +11,7 @@
 	- Inheritance and polymorphism
 	- Pattern matching
 	- Expression bodied members
+	- Local methods
 
 ## Features:
 - See \VendingMachine\Specifications\Vending Machine Terminal User Stories.pdf
@@ -22,3 +23,6 @@
 
 ## Improvement opportunities:
 - Keep this up to date with the latest .NET LTS releases
+- Complete the audit file feature
+	- I took the easy way out and set the audit file to generate after the vm is shut off
+	- Based on the specs the audit file should be written to in real time, so that interested parties can also consume the info in real time
