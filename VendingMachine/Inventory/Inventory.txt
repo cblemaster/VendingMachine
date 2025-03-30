@@ -1,0 +1,16 @@
+Potato Crisps|3.05|Chips
+Prongles|1.45|Chips
+Boogles|2.75|Chips
+Veggie Crisps|3.65|Chips
+Lieutenants Wafers|1.80|Crackers
+Chweesits|1.50|Crackers
+Pita Squares|1.50|Crackers
+Nyblets|1.75|Crackers
+Cola|1.25|Drink
+Dr. Rumble|1.50|Drink
+Mountain Condensate|1.50|Drink
+EnergyStroke|1.50|Drink
+Cinnamon Pastry|0.85|Poptart
+Strawberry Pastry|0.95|Poptart
+Blueberry Pastry|0.75|Poptart
+Apple Pastry|0.75|Poptart
