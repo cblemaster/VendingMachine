@@ -1,4 +1,4 @@
-﻿namespace VendingMachine.Models;
+﻿namespace VendingMachine.Inventory;
 
 internal sealed class UnknownSnack : Snack
 {

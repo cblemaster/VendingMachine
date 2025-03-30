@@ -1,7 +1,8 @@
 ﻿using System.Text;
-using VendingMachine.Services;
+using VendingMachine.Inventory;
+using VendingMachine.Reporting;
 
-namespace VendingMachine.Models;
+namespace VendingMachine.Machine;
 
 internal sealed class Vendomatic
 {

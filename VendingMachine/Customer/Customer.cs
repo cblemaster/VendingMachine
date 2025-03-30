@@ -1,4 +1,7 @@
-﻿namespace VendingMachine.Models;
+﻿using VendingMachine.Machine;
+using VendingMachine.Reporting;
+
+namespace VendingMachine.Customer;
 
 internal static class Customer
 {

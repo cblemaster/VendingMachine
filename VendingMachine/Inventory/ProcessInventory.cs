@@ -1,6 +1,6 @@
-﻿using VendingMachine.Models;
+﻿using VendingMachine.Machine;
 
-namespace VendingMachine.Services;
+namespace VendingMachine.Inventory;
 
 internal static class ProcessInventory
 {
@@ -29,7 +29,7 @@ internal static class ProcessInventory
 
                 Slot slot = new() { Identifier = inventoryLineValues.SlotIdentifier };
 
-                while (slot.Snacks.Count < VendingMachine.Models.Vendomatic.SNACKS_PER_SLOT)
+                while (slot.Snacks.Count < Vendomatic.SNACKS_PER_SLOT)
                 {
                     slot.Snacks.Push(snack);
                 }
@@ -37,7 +37,7 @@ internal static class ProcessInventory
                 inventory.Add(slot);
             }
 
-            return inventory.AsEnumerable<Slot>();
+            return inventory.AsEnumerable();
         }
         catch (IOException) { throw; }
 

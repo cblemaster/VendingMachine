@@ -1,6 +1,7 @@
-﻿using VendingMachine.Services;
+﻿using VendingMachine.Inventory;
+using VendingMachine.Machine;
 
-namespace VendingMachine.Models;
+namespace VendingMachine.Owner;
 
 internal static class Owner
 {

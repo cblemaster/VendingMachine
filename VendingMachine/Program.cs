@@ -1,6 +1,8 @@
 ﻿using System.Text;
-using VendingMachine.Models;
-using VendingMachine.Services;
+using VendingMachine.Customer;
+using VendingMachine.Machine;
+using VendingMachine.Owner;
+using VendingMachine.Reporting;
 using VendingMachine.UI;
 
 #region constants
@@ -21,7 +23,7 @@ MenuDrivenCLI ui = new();
 ui.Output($"Welcome to {Vendomatic.VENDING_MACHINE_MODEL} !");
 ui.Output($"Brought to you by {Vendomatic.VENDING_MACHINE_MANUFACTURER}");
 
-VendingMachine.Models.Vendomatic vm = new();
+Vendomatic vm = new();
 
 Owner.TurnVendingMachineOn(vm);
 IEnumerable<Slot> inventory = Owner.UpdateVendingMachineInventory(vm);

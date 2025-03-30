@@ -1,4 +1,4 @@
-﻿namespace VendingMachine.Services;
+﻿namespace VendingMachine;
 
 internal static class Helpers
 {
@@ -7,13 +7,13 @@ internal static class Helpers
     internal static (int Quarters, int Dimes, int Nickels) CountCoinsForChange(decimal change)
     {
         int numQuarters = CalculateCoinCount(change, Coins.Quarter);
-        change -= numQuarters * (((int)Coins.Quarter) / 100M);
+        change -= numQuarters * ((int)Coins.Quarter / 100M);
 
         int numDimes = CalculateCoinCount(change, Coins.Dime);
-        change -= numDimes * (((int)Coins.Dime) / 100M);
+        change -= numDimes * ((int)Coins.Dime / 100M);
 
         int numNickels = CalculateCoinCount(change, Coins.Nickel);
-        change -= numNickels * (((int)Coins.Nickel) / 100M);
+        change -= numNickels * ((int)Coins.Nickel / 100M);
 
         return change == 0 ? (numQuarters, numDimes, numNickels) : (-1, -1, -1);
 

@@ -1,14 +1,15 @@
 ﻿using System.Text;
-using VendingMachine.Models;
+using VendingMachine.Inventory;
+using VendingMachine.Machine;
 
-namespace VendingMachine.Services;
+namespace VendingMachine.Reporting;
 
 internal static class WriteReport
 {
     #region constants
-    private static readonly string SALES_REPORT_FILENAME = ($"SalesReport_{Helpers.FormatedDateTimeNow}.txt").Replace(" ", "_");
+    private static readonly string SALES_REPORT_FILENAME = $"SalesReport_{Helpers.FormatedDateTimeNow}.txt".Replace(" ", "_");
     private const string REPORTS_FILE_PATH = @"..\..\..\..\Reports";
-    private static readonly string AUDIT_FILE_FILENAME = ($"AuditFile_{Helpers.FormatedDateTimeNow}.txt").Replace(" ", "_");
+    private static readonly string AUDIT_FILE_FILENAME = $"AuditFile_{Helpers.FormatedDateTimeNow}.txt".Replace(" ", "_");
     private const string SALES_REPORT_HEADER = "*** SALES REPORT FOR VENDING MACHINE ***";
     private const string NO_SNACKS_SOLD_TODAY = "* No snacks sold today! *";
     #endregion

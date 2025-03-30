@@ -1,4 +1,6 @@
-﻿namespace VendingMachine.Models;
+﻿using VendingMachine.Inventory;
+
+namespace VendingMachine.Machine;
 
 internal sealed class Slot
 {

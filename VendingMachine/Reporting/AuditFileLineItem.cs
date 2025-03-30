@@ -1,6 +1,6 @@
-﻿using VendingMachine.Services;
+﻿using VendingMachine.Inventory;
 
-namespace VendingMachine.Models;
+namespace VendingMachine.Reporting;
 
 internal static class AuditFileLineItem
 {
