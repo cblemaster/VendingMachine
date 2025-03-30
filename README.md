@@ -1,28 +1,30 @@
-# Vending Machine
+## Vending Machine Simulator
+### About
++ Welcome to Vend-Tron 9000!!!
++ Vending machine customers can browse available snacks, deposit funds, purchase snacks, and receive any change due
++ Vending machine owners can run sales reports and transaction reports
+### Objectives
++ Single project, concerns separated by folders (avoid needless complexity)
++ Consider logging as a way to implement the reporting use cases
++ Use OOP principles, even if doing so results in something contrived
+### Domains/Contexts
++ The customer context is concerned with browsing snacks, depositing funds, purchasing snacks, and finalizing transactions
++ The owner context is concerned with running reports
++ The vending machine context is concerned with filling snack inventory, and processing and tracking transactions (funds deposited, snack(s) purchased, change returned)
++ The reporting context is concerned with generating reports as requested by the vending machine owner
+### Use cases
+|#|Context|Use case|Rules|
+|-|-|-|-|
+|1|Customer|Browse available snacks|n/a|
+|2|Customer|Deposit funds|funds deposited must be greater than zero|
+|3|Customer|Purchase snack|<ul><li>must be funds deposited</li><li>snack price cannot exceed sum of funds deposited less sum of price of items purchased</li><li>snack must have at least one (1) available</li></ul>|
+|4|Customer|Finalize transaction|change, if any, is returned in the smallest number of coins possible|
+|5|Owner|View sales report|n/a|
+|6|Owner|Run transaction report|n/a|
+|7|Vending machine|Fill snack inventory|inventory is available as master data|
+|8|Vending machine|Process funds deposited|transaction is logged for reporting|
+|9|Vending machine|Process snack purchased|transaction is logged for reporting|
+|10|Vending machine|Process change returned to customer|transaction is logged for reporting|
+|11|Reporting|Generate sales report|<ul><li>runs automatically when the app is closing</li><li>shows snack name, quantity sold, sales amount, and total sales amount</li></ul>|
+|12|Reporting|Generate transaction report|<ul><li>runs when requested by owner</li><li>shows funds deposited, snacks sold, change returned</li></ul>|
 
-## About:
-- A command line interface application that emulates the functionality of a vending machine
-- This is based on a Tech Elevator bootcamp capstone project
-
-### Built with:
-- .NET 8 / C# 12
-- File I/O
-- Programming techniques:
-	- Inheritance and polymorphism
-	- Pattern matching
-	- Expression bodied members
-	- Local methods
-
-## Features:
-- See \VendingMachine\Specifications\Vending Machine Terminal User Stories.pdf
-
-## Instructions for running the application:
-- Note that Visual Studio is required to run the application
-- Clone or download the repo
-- Run the solution in Visual Studio
-
-## Improvement opportunities:
-- Keep this up to date with the latest .NET LTS releases
-- Complete the audit file feature
-	- I took the easy way out and set the audit file to generate after the vm is shut off
-	- Based on the specs the audit file should be written to in real time, so that interested parties can also consume the info in real time
