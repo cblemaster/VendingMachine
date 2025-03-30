@@ -1,10 +1,11 @@
-﻿namespace VendingMachine.Inventory;
+﻿
+namespace VendingMachine.Inventory;
 
-internal abstract class Snack
+internal abstract class Snack(decimal price, string label)
 {
-    internal required decimal Price { get; set; }
-    internal required string Label { get; set; }
+    protected decimal Price { get; } = price;
+    protected string Label { get; } = label;
 
-    public override string ToString() => string.Format("{0,-20} {1:C}", Label, Price);
-    internal abstract string SendMessageWhenSold();
+    protected new string ToString() => string.Format("{0,-20} {1:C}", Label, Price);
+    internal abstract string MessageWhenSold();
 }
