@@ -1,6 +1,5 @@
-﻿
-//#region constants
-//const string MAIN_MENU_OPTION_DISPLAY_SNACKS = "Display Vending Machine Items";
+﻿//#region constants
+const string MAIN_MENU_OPTION_DISPLAY_SNACKS = "Display Vending Machine Items";
 //const string MAIN_MENU_OPTION_PURCHASE_SNACKS = "Purchase Snacks";
 //const string MAIN_MENU_OPTION_EXIT = "Exit";
 //const string MAIN_MENU_OPTION_SALES_REPORT = "Sales Report";

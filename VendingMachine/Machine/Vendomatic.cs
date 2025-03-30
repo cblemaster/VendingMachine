@@ -1,7 +1,7 @@
 ﻿
 using _Customer = VendingMachine.Customer.Customer;
-using _Owner = VendingMachine.Owner.Owner;
 using _Inventory = VendingMachine.Inventory.Inventory;
+using _Owner = VendingMachine.Owner.Owner;
 
 namespace VendingMachine.Machine;
 
