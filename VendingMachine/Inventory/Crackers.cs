@@ -1,6 +1,7 @@
-﻿namespace VendingMachine.Inventory;
+﻿
+namespace VendingMachine.Inventory;
 
-internal sealed class Crackers : Snack
+internal sealed class Crackers(decimal price, string label) : Snack(price, label)
 {
-    internal override string SendMessageWhenSold() => "Enjoy your toasty treat.";
+    internal override string MessageWhenSold() => "Enjoy your toasty treat.";
 }
