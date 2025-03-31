@@ -1,84 +1,82 @@
-{
-  "inventory": [
-    {
-      "label": "Potato Crisps",
-      "price": 3.05,
-      "type": "Chips"
-    },
-    {
-      "label": "Prongles",
-      "price": 1.45,
-      "type": "Chips"
-    },
-    {
-      "label": "Boogles",
-      "price": 2.75,
-      "type": "Chips"
-    },
-    {
-      "label": "Veggie Crisps",
-      "price": 3.65,
-      "type": "Chips"
-    },
-    {
-      "label": "Lieutenants Wafers",
-      "price": 1.80,
-      "type": "Crackers"
-    },
-    {
-      "label": "Chweesits",
-      "price": 1.50,
-      "type": "Crackers"
-    },
-    {
-      "label": "Pita Squares",
-      "price": 1.50,
-      "type": "Crackers"
-    },
-    {
-      "label": "Nyblets",
-      "price": 1.75,
-      "type": "Crackers"
-    },
-    {
-      "label": "Cola",
-      "price": 1.25,
-      "type": "Drink"
-    },
-    {
-      "label": "Dr. Rumble",
-      "price": 1.50,
-      "type": "Drink"
-    },
-    {
-      "label": "Mountain Condensate",
-      "price": 1.50,
-      "type": "Drink"
-    },
-    {
-      "label": "EnergyStroke",
-      "price": 1.50,
-      "type": "Drink"
-    },
-    {
-      "label": "Cinnamon Pastry",
-      "price": 0.85,
-      "type": "Poptart"
-    },
-    {
-      "label": "Strawberry Pastry",
-      "price": 0.95,
-      "type": "Poptart"
-    },
-    {
-      "label": "Blueberry Pastry",
-      "price": 0.75,
-      "type": "Poptart"
-    },
-    {
-      "label": "Apple Pastry|0.75|Poptart",
-      "price": 0.75,
-      "type": "Poptart"
-    }
-  ]
-}
+[
+  {
+    "label": "Potato Crisps",
+    "price": 3.05,
+    "type": "Chips"
+  },
+  {
+    "label": "Prongles",
+    "price": 1.45,
+    "type": "Chips"
+  },
+  {
+    "label": "Boogles",
+    "price": 2.75,
+    "type": "Chips"
+  },
+  {
+    "label": "Veggie Crisps",
+    "price": 3.65,
+    "type": "Chips"
+  },
+  {
+    "label": "Lieutenants Wafers",
+    "price": 1.80,
+    "type": "Crackers"
+  },
+  {
+    "label": "Chweesits",
+    "price": 1.50,
+    "type": "Crackers"
+  },
+  {
+    "label": "Pita Squares",
+    "price": 1.50,
+    "type": "Crackers"
+  },
+  {
+    "label": "Nyblets",
+    "price": 1.75,
+    "type": "Crackers"
+  },
+  {
+    "label": "Cola",
+    "price": 1.25,
+    "type": "Drink"
+  },
+  {
+    "label": "Dr. Rumble",
+    "price": 1.50,
+    "type": "Drink"
+  },
+  {
+    "label": "Mountain Condensate",
+    "price": 1.50,
+    "type": "Drink"
+  },
+  {
+    "label": "EnergyStroke",
+    "price": 1.50,
+    "type": "Drink"
+  },
+  {
+    "label": "Cinnamon Pastry",
+    "price": 0.85,
+    "type": "Poptart"
+  },
+  {
+    "label": "Strawberry Pastry",
+    "price": 0.95,
+    "type": "Poptart"
+  },
+  {
+    "label": "Blueberry Pastry",
+    "price": 0.75,
+    "type": "Poptart"
+  },
+  {
+    "label": "Apple Pastry",
+    "price": 0.75,
+    "type": "Poptart"
+  }
+]
