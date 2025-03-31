@@ -1,20 +1,22 @@
 ﻿
 using _Customer = VendingMachine.Customer.Customer;
-using _Inventory = VendingMachine.Inventory.Inventory;
 using _Owner = VendingMachine.Owner.Owner;
 
 namespace VendingMachine.Machine;
 
-internal sealed class Vendomatic
+internal sealed class VendTron
 {
+    private readonly string[] _slotRows = ["A", "B", "C", "D"];
+    private readonly string[] _slotColumns = ["1", "2", "3", "4"];
+
     internal _Customer Customer { get; }
     internal _Owner Owner { get; }
-    internal _Inventory Inventory { get; }
+    internal Slot[] Slots { get; }
 
-    private Vendomatic()
+    private VendTron(Slot[] slots)
     {
         Customer = new();
         Owner = new();
-        Inventory = new();
+        Slots = slots;
     }
 }
