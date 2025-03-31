@@ -1,5 +1,5 @@
 ﻿
-namespace VendingMachine.Inventory;
+namespace VendingMachine.Snacks;
 
 internal abstract class Snack(decimal price, string label)
 {

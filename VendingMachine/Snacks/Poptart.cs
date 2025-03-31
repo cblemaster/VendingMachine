@@ -1,5 +1,5 @@
 ﻿
-namespace VendingMachine.Inventory;
+namespace VendingMachine.Snacks;
 
 internal sealed class Poptart(decimal price, string label) : Snack(price, label)
 {
