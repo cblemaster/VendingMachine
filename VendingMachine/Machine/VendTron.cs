@@ -11,10 +11,10 @@ internal sealed class VendTron
     private const decimal DIME = 0.10m;
     private const decimal NICKEL = 0.05m;
 
-    private readonly List<decimal> _deposits;
-    private readonly List<Snack> _purchases;
-    private readonly List<decimal> _changeReturned;
-
+    private List<(decimal Deposit, DateTimeOffset timestamp)> _deposits;
+    private List<(Snack _Snack, DateTimeOffset timestamp)> _purchases;
+    private List<(decimal ChangeReturned, DateTimeOffset timestamp)> _changeReturned;
+    
     internal _Inventory Inventory { get; }  // TODO: Any refs from outside of this class?
     internal decimal Deposits { get; private set; }  // TODO: Any refs from outside of this class?
 
@@ -41,7 +41,7 @@ internal sealed class VendTron
         else
         {
             Deposits += deposit;
-            _deposits.Add(deposit);
+            _deposits.Add((deposit, DateTimeOffset.UtcNow));
         }
     }
 
@@ -62,7 +62,7 @@ internal sealed class VendTron
                 Snack snack = snackSlot.Snacks.First();
 
                 snackSlot.RemoveSnack(snack);
-                _purchases.Add(snack);
+                _purchases.Add((snack, DateTimeOffset.UtcNow));
             }
         }
     }
@@ -89,7 +89,7 @@ internal sealed class VendTron
         }
         else
         {
-            _changeReturned.Add(changeReturned);
+            _changeReturned.Add((changeReturned, DateTimeOffset.UtcNow));
             return $"Your change is {quarters} quarter(s), {dimes} dime(s), and {nickels} nickels...";
         }
     }
