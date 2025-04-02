@@ -28,7 +28,7 @@ internal sealed class VendTron
 
     internal string DisplaySnacks() => Inventory.DisplaySnacks();
 
-    internal void ProcessDeposit(decimal deposit)
+    internal void ProcessMakeDeposit(decimal deposit)
     {
         if (deposit <= 0)
         {
