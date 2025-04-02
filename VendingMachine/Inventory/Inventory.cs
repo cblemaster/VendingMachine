@@ -35,7 +35,7 @@ internal sealed class Inventory
     private void FillSnackSlots(IEnumerable<SnackJsonModel> jsonSnacks)
     {
         List<SnackSlot> snackSlots = [];
-        
+
         int index = 0;
         foreach (string identifier in _validIdentifiers)
         {

@@ -1,4 +1,5 @@
-﻿namespace VendingMachine.Inventory;
+﻿
+namespace VendingMachine.Inventory;
 
 internal sealed class SnackJsonModel
 {

@@ -1,4 +1,5 @@
-﻿using VendingMachine.Snacks;
+﻿
+using VendingMachine.Snacks;
 
 namespace VendingMachine.Inventory;
 
@@ -6,7 +7,7 @@ internal sealed class SnackSlot
 {
     internal const int SNACK_SLOT_CAPACITY = 5;
 
-    private List<Snack> _snacks;
+    private readonly List<Snack> _snacks;
 
     internal string Identifier { get; }
     internal IReadOnlyCollection<Snack> Snacks => _snacks.AsReadOnly();

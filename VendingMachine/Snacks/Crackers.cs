@@ -1,4 +1,5 @@
-﻿namespace VendingMachine.Snacks;
+﻿
+namespace VendingMachine.Snacks;
 
 internal sealed class Crackers : Snack
 {
