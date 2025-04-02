@@ -10,7 +10,7 @@ internal sealed class VendTron
     private List<decimal> _deposits;
     private List<Snack> _purchases;
     private List<decimal> _changeReturned;
-    
+
     internal Inventory Inventory { get; }
     internal decimal Deposits { get; private set; }
 
@@ -23,7 +23,7 @@ internal sealed class VendTron
     }
 
     internal string DisplaySnacks() => Inventory.DisplaySnacks();
-    
+
     internal void ProcessDeposit(decimal deposit)
     {
         if (deposit <= 0)
@@ -56,7 +56,7 @@ internal sealed class VendTron
             else
             {
                 Snack snack = snackSlot.Snacks.First();
-                
+
                 snackSlot.RemoveSnack(snack);
                 _purchases.Add(snack);
             }
@@ -69,7 +69,7 @@ internal sealed class VendTron
         {
             throw new InvalidOperationException("There is no change due...");
         }
-        
+
         decimal changeReturned = Deposits;
 
         int quarters = (int)(Deposits / QUARTER);

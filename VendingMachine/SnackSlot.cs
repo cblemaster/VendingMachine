@@ -4,9 +4,9 @@ namespace VendingMachine;
 internal sealed class SnackSlot
 {
     internal const int SNACK_SLOT_CAPACITY = 5;
-    
+
     private List<Snack> _snacks;
-    
+
     internal string Identifier { get; }
     internal List<Snack> Snacks => _snacks;
 

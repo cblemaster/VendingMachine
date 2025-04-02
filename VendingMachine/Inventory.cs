@@ -7,7 +7,7 @@ namespace VendingMachine;
 internal sealed class Inventory
 {
     private readonly string[] _validIdentifiers = ["A1", "A2", "A3", "A4", "B1", "B2", "B3", "B4", "C1", "C2", "C3", "C4", "D1", "D2", "D3", "D4"];
-    private SnackSlot[] _snackSlots;
+    private readonly SnackSlot[] _snackSlots;
 
     internal SnackSlot[] SnackSlots => _snackSlots;
 
@@ -60,7 +60,7 @@ internal sealed class Inventory
                     break;
             }
 
-            Snack[] snackArray = Enumerable.Repeat(snack, SnackSlot.SNACK_SLOT_CAPACITY).ToArray();
+            Snack[] snackArray = [.. Enumerable.Repeat(snack, SnackSlot.SNACK_SLOT_CAPACITY)];
             snackSlot.AddSnacks(snackArray);
             index++;
         }
@@ -69,7 +69,7 @@ internal sealed class Inventory
     internal string DisplaySnacks()
     {
         StringBuilder sb = new();
-        
+
         if (SnackSlots.All(s => s.Snacks.Count == 0))
         {
             sb.AppendLine("VendTron is sold out of snacks...");
