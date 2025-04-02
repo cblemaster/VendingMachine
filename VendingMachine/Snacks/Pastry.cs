@@ -1,5 +1,4 @@
-﻿
-namespace VendingMachine;
+﻿namespace VendingMachine.Snacks;
 
 internal sealed class Pastry : Snack
 {

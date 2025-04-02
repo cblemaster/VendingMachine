@@ -1,5 +1,8 @@
 ﻿//#region constants
-const string MAIN_MENU_OPTION_DISPLAY_SNACKS = "Display Vending Machine Items";
+using VendingMachine.Machine;
+VendTron vt = new();
+vt.ProcessDeposit(12.45m);
+Console.WriteLine(vt.DisplaySnacks());
 //const string MAIN_MENU_OPTION_PURCHASE_SNACKS = "Purchase Snacks";
 //const string MAIN_MENU_OPTION_EXIT = "Exit";
 //const string MAIN_MENU_OPTION_SALES_REPORT = "Sales Report";
