@@ -62,21 +62,21 @@
   {
     "label": "Cinnamon Pastry",
     "price": 0.85,
-    "type": "Poptart"
+    "type": "Pastry"
   },
   {
     "label": "Strawberry Pastry",
     "price": 0.95,
-    "type": "Poptart"
+    "type": "Pastry"
   },
   {
     "label": "Blueberry Pastry",
     "price": 0.75,
-    "type": "Poptart"
+    "type": "Pastry"
   },
   {
     "label": "Apple Pastry",
     "price": 0.75,
-    "type": "Poptart"
+    "type": "Pastry"
   }
 ]
