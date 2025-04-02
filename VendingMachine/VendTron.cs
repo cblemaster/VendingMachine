@@ -11,8 +11,8 @@ internal sealed class VendTron
     private List<Snack> _purchases;
     private List<decimal> _changeReturned;
 
-    internal Inventory Inventory { get; }
-    internal decimal Deposits { get; private set; }
+    internal Inventory Inventory { get; }  // TODO: Any refs from outside of this class?
+    internal decimal Deposits { get; private set; }  // TODO: Any refs from outside of this class?
 
     internal VendTron()
     {

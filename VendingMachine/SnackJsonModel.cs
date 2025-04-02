@@ -3,7 +3,7 @@ namespace VendingMachine;
 
 internal sealed class SnackJsonModel
 {
-    internal string Type { get; init; } = string.Empty;
-    internal decimal Price { get; init; }
-    internal string Label { get; init; } = string.Empty;
+    public string Type { get; init; } = string.Empty;
+    public decimal Price { get; init; }
+    public string Label { get; init; } = string.Empty;
 }

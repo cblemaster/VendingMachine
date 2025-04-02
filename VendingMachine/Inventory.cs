@@ -7,18 +7,16 @@ namespace VendingMachine;
 internal sealed class Inventory
 {
     private readonly string[] _validIdentifiers = ["A1", "A2", "A3", "A4", "B1", "B2", "B3", "B4", "C1", "C2", "C3", "C4", "D1", "D2", "D3", "D4"];
-    private readonly SnackSlot[] _snackSlots;
+    private SnackSlot[] _snackSlots = [];
 
-    internal SnackSlot[] SnackSlots => _snackSlots;
+    internal IReadOnlyCollection<SnackSlot> SnackSlots => _snackSlots.AsReadOnly();
 
     internal Inventory()
     {
-        IEnumerable<SnackJsonModel> jsonSnacks = GetSnacksFromInventory();
-        FillSnackSlots(jsonSnacks);
-        _snackSlots = [];
+        FillSnackSlots(GetSnacksFromInventory());
     }
 
-    internal static IEnumerable<SnackJsonModel> GetSnacksFromInventory()
+    private static IEnumerable<SnackJsonModel> GetSnacksFromInventory()
     {
         JsonSerializerOptions options = new() { PropertyNameCaseInsensitive = true };
         return JsonSerializer.Deserialize<IEnumerable<SnackJsonModel>>(ReadInventoryToString(), options) ?? [];
@@ -33,8 +31,10 @@ internal sealed class Inventory
         }
     }
 
-    internal void FillSnackSlots(IEnumerable<SnackJsonModel> jsonSnacks)
+    private void FillSnackSlots(IEnumerable<SnackJsonModel> jsonSnacks)
     {
+        List<SnackSlot> snackSlots = [];
+        
         int index = 0;
         foreach (string identifier in _validIdentifiers)
         {
@@ -62,8 +62,10 @@ internal sealed class Inventory
 
             Snack[] snackArray = [.. Enumerable.Repeat(snack, SnackSlot.SNACK_SLOT_CAPACITY)];
             snackSlot.AddSnacks(snackArray);
+            snackSlots.Add(snackSlot);
             index++;
         }
+        _snackSlots = [.. snackSlots];
     }
 
     internal string DisplaySnacks()
