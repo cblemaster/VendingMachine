@@ -32,7 +32,7 @@ internal sealed class VendTron
     {
         if (deposit <= 0)
         {
-            throw new ArgumentException("Zero deposit not allowed...");
+            throw new ArgumentException("Zero or negative deposit not allowed...");
         }
         else if (Inventory.SnackSlots.All(s => s.Snacks.Count == 0))
         {
@@ -53,7 +53,7 @@ internal sealed class VendTron
             {
                 throw new InvalidOperationException("Snack is sold out, and cannot be purchased...");
             }
-            else if (snackSlot.Snacks.First().Price > Deposits)
+            else if (Deposits == 0m || snackSlot.Snacks.First().Price > Deposits)
             {
                 throw new ArgumentException("Insufficient deposits for snack purchase...");
             }
