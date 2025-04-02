@@ -12,5 +12,6 @@ internal class Snack
         Label = label;
     }
 
+    internal string ToDisplayString => $"Snack: {Label}, Price: {Price:C}";
     internal virtual void SomethingPolymorphic() { }
 }
