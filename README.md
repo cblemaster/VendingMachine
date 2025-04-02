@@ -15,9 +15,9 @@
 ### Use cases
 |#|Context|Use case|Rules|
 |-|-|-|-|
-|1|Customer|Browse available snacks|n/a|
-|2|Customer|Deposit funds|funds deposited must be greater than zero|
-|3|Customer|Purchase snack|<ul><li>must be funds deposited</li><li>snack price cannot exceed sum of funds deposited less sum of price of items purchased</li><li>snack must have at least one (1) available</li></ul>|
+|1|Customer|Display available snacks|n/a|
+|2|Customer|Make deposit|<ul><li>deposit must be greater than zero</li><li>must be snacks available</li></ul>|
+|3|Customer|Purchase snack|<ul><li>must be a deposit</li><li>snack price cannot exceed deposit</li><li>snack must have at least one (1) available</li></ul>|
 |4|Customer|Finalize transaction|change, if any, is returned in the smallest number of coins possible|
 |5|Owner|View sales report|n/a|
 |6|Owner|Run transaction report|n/a|
