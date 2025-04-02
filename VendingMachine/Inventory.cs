@@ -1,4 +1,5 @@
 ﻿
+using System.Text;
 using System.Text.Json;
 
 namespace VendingMachine;
@@ -63,5 +64,31 @@ internal sealed class Inventory
             snackSlot.AddSnacks(snackArray);
             index++;
         }
+    }
+
+    internal string DisplaySnacks()
+    {
+        StringBuilder sb = new();
+        
+        if (SnackSlots.All(s => s.Snacks.Count == 0))
+        {
+            sb.AppendLine("VendTron is sold out of snacks...");
+        }
+        else
+        {
+            sb.AppendLine("SNACKS AVAILABLE...");
+            foreach (SnackSlot snackSlot in SnackSlots)
+            {
+                if (snackSlot.Snacks.Count == 0)
+                {
+                    sb.Append($"{snackSlot.Identifier}\t\tSold out!");
+                }
+                else
+                {
+                    sb.AppendLine(snackSlot.ToDisplayString + $"\t\t{snackSlot.Snacks.Count}");
+                }
+            }
+        }
+        return sb.ToString();
     }
 }
