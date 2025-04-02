@@ -22,5 +22,5 @@ internal sealed class SnackSlot
 
     internal void RemoveSnack(Snack snack) => _snacks.Remove(snack);
 
-    internal string ToDisplayString => $"Snack slot: {Identifier}{(Snacks.Count != 0 ? $", {Snacks.First().ToDisplayString}" : "SOLD OUT")}";
+    internal string ToDisplayString => $"Snack slot: {Identifier}{(Snacks.Count != 0 ? $", {Snacks.First().ToDisplayString}" : "Sold out!")}";
 }

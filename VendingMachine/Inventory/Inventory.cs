@@ -84,11 +84,11 @@ internal sealed class Inventory
             {
                 if (snackSlot.Snacks.Count == 0)
                 {
-                    sb.Append($"{snackSlot.Identifier}\t\tSold out!");
+                    sb.Append($"{snackSlot.Identifier}, Sold out!");
                 }
                 else
                 {
-                    sb.AppendLine(snackSlot.ToDisplayString + $"\t\t{snackSlot.Snacks.Count}");
+                    sb.AppendLine($"{snackSlot.ToDisplayString}, Qty: {snackSlot.Snacks.Count}");
                 }
             }
         }
