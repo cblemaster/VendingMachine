@@ -13,8 +13,8 @@ internal sealed class VendTron
 
     private readonly List<Transaction> _transactions;
 
-    internal _Inventory Inventory { get; }  // TODO: Any refs from outside of this class?
-    internal decimal Deposit { get; private set; }  // TODO: Any refs from outside of this class?
+    private _Inventory Inventory { get; }  // TODO: Any refs from outside of this class?
+    private decimal Deposit { get; set; }  // TODO: Any refs from outside of this class?
 
     internal VendTron()
     {
@@ -61,7 +61,7 @@ internal sealed class VendTron
 
                 snackSlot.RemoveSnack(snack);
                 DateTimeOffset now = DateTimeOffset.UtcNow;
-                _transactions.Add(new Transaction(TransactionType.Purchase, snack.Price, $"Time: {now:O}, Snack sold: {snackSlot.Identifier} {snack.ToDisplayString}", now));
+                _transactions.Add(new Transaction(TransactionType.Purchase, snack.Price, $"Time: {now:O}, Snack sold: {snackSlot.Identifier} {snack.ToDisplayString}", now, snack));
             }
         }
     }
@@ -92,5 +92,26 @@ internal sealed class VendTron
             _transactions.Add(new Transaction(TransactionType.Change, changeReturned, $"Time: {now:O}, Return change: {changeReturned:C}", now));
             return $"Your change is {quarters} quarter(s), {dimes} dime(s), and {nickels} nickels...";
         }
+    }
+
+    private void ReportingValues()
+    {
+        IEnumerable<Transaction> snacksSold = _transactions.Where(t => t.TransactionType == TransactionType.Purchase);
+        IEnumerable<Transaction> depositsMade = _transactions.Where(t => t.TransactionType != TransactionType.Deposit);
+        IEnumerable<Transaction> changeReturned = _transactions.Where(t => t.TransactionType == TransactionType.Change);
+                
+        decimal totalSales = snacksSold.Sum(t => t.Amount);
+        decimal totalDeposits = depositsMade.Sum(t => t.Amount);
+        decimal totalChangeReturned = changeReturned.Sum(t => t.Amount);
+
+        int countSales = snacksSold.Count();
+        int countDeposits = depositsMade.Count();
+        int countChangeReturned = changeReturned.Count();
+
+        decimal avgSale = totalSales / countSales;
+        decimal avgDeposit = totalDeposits / countDeposits;
+        decimal avgChangeReturned = totalChangeReturned / countChangeReturned;
+
+        //var tytyt = snacksSold.Where(t => t.Snack is not null).GroupBy(t => t.Snack!.Label).Select(t => t.Key);
     }
 }
