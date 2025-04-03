@@ -11,10 +11,10 @@ internal sealed class VendTron
     private const decimal DIME = 0.10m;
     private const decimal NICKEL = 0.05m;
 
-    private List<(decimal Deposit, DateTimeOffset timestamp)> _deposits;
-    private List<(Snack _Snack, DateTimeOffset timestamp)> _purchases;
-    private List<(decimal ChangeReturned, DateTimeOffset timestamp)> _changeReturned;
-    
+    private readonly List<(decimal Deposit, DateTimeOffset timestamp)> _deposits;
+    private readonly List<(Snack _Snack, DateTimeOffset timestamp)> _purchases;
+    private readonly List<(decimal ChangeReturned, DateTimeOffset timestamp)> _changeReturned;
+
     internal _Inventory Inventory { get; }  // TODO: Any refs from outside of this class?
     internal decimal Deposits { get; private set; }  // TODO: Any refs from outside of this class?
 

@@ -12,29 +12,12 @@ internal sealed class Inventory
 
     internal IReadOnlyCollection<SnackSlot> SnackSlots => _snackSlots.AsReadOnly();
 
-    internal Inventory()
-    {
-        FillSnackSlots(GetSnacksFromInventory());
-    }
+    internal Inventory() => FillSnackSlots();
 
-    private static IEnumerable<SnackJsonModel> GetSnacksFromInventory()
-    {
-        JsonSerializerOptions options = new() { PropertyNameCaseInsensitive = true };
-        return JsonSerializer.Deserialize<IEnumerable<SnackJsonModel>>(ReadInventoryToString(), options) ?? [];
-
-        static string ReadInventoryToString()
-        {
-            string currentDirectory = Environment.CurrentDirectory;
-            string fullInventoryPath = Path.Combine(currentDirectory, @"..\..\..\", "inventory.json");  // TODO: magic string
-
-            using StreamReader sr = new(fullInventoryPath);
-            return sr.ReadToEnd();
-        }
-    }
-
-    private void FillSnackSlots(IEnumerable<SnackJsonModel> jsonSnacks)
+    private void FillSnackSlots()
     {
         List<SnackSlot> snackSlots = [];
+        IEnumerable<SnackJsonModel> jsonSnacks = GetSnacksFromInventory();
 
         int index = 0;
         foreach (string identifier in _validIdentifiers)
@@ -67,6 +50,21 @@ internal sealed class Inventory
             index++;
         }
         _snackSlots = [.. snackSlots];
+
+        static IEnumerable<SnackJsonModel> GetSnacksFromInventory()
+        {
+            return JsonSerializer.Deserialize<IEnumerable<SnackJsonModel>>(ReadInventoryToString(), Options()) ?? [];
+
+            static JsonSerializerOptions Options() => new() { PropertyNameCaseInsensitive = true };
+            static string ReadInventoryToString()
+            {
+                string currentDirectory = Environment.CurrentDirectory;
+                string fullInventoryPath = Path.Combine(currentDirectory, @"..\..\..\", "inventory.json");  // TODO: magic string
+
+                using StreamReader sr = new(fullInventoryPath);
+                return sr.ReadToEnd();
+            }
+        }
     }
 
     internal string DisplaySnacks()
@@ -75,21 +73,16 @@ internal sealed class Inventory
 
         if (SnackSlots.All(s => s.Snacks.Count == 0))
         {
-            sb.AppendLine("VendTron is sold out of snacks...");
+            sb = sb.AppendLine("VendTron is sold out of snacks...");
         }
         else
         {
-            sb.AppendLine("SNACKS AVAILABLE...");
+            sb = sb.AppendLine("SNACKS AVAILABLE...");
             foreach (SnackSlot snackSlot in SnackSlots)
             {
-                if (snackSlot.Snacks.Count == 0)
-                {
-                    sb.Append($"{snackSlot.Identifier}, Sold out!");
-                }
-                else
-                {
-                    sb.AppendLine($"{snackSlot.ToDisplayString}, Qty: {snackSlot.Snacks.Count}");
-                }
+                sb = snackSlot.Snacks.Count == 0
+                    ? sb.AppendLine($"{snackSlot.Identifier}, Sold out!")
+                    : sb.AppendLine($"{snackSlot.ToDisplayString}, Qty: {snackSlot.Snacks.Count}");
             }
         }
         return sb.ToString();
