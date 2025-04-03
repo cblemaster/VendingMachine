@@ -1,4 +1,6 @@
 ﻿
+using VendingMachine.Snacks;
+
 namespace VendingMachine.Machine;
 
-internal record Transaction(TransactionType TransactionType, decimal Amount, string Text, DateTimeOffset Timestamp);
+internal record Transaction(TransactionType TransactionType, decimal Amount, string Text, DateTimeOffset Timestamp, Snack? Snack = null );
