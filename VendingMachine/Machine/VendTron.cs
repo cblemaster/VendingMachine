@@ -11,19 +11,15 @@ internal sealed class VendTron
     private const decimal DIME = 0.10m;
     private const decimal NICKEL = 0.05m;
 
-    private readonly List<(decimal Deposit, DateTimeOffset timestamp)> _deposits;
-    private readonly List<(Snack _Snack, DateTimeOffset timestamp)> _purchases;
-    private readonly List<(decimal ChangeReturned, DateTimeOffset timestamp)> _changeReturned;
+    private readonly List<Transaction> _transactions;
 
     internal _Inventory Inventory { get; }  // TODO: Any refs from outside of this class?
-    internal decimal Deposits { get; private set; }  // TODO: Any refs from outside of this class?
+    internal decimal Deposit { get; private set; }  // TODO: Any refs from outside of this class?
 
     internal VendTron()
     {
         Inventory = new();
-        _purchases = [];
-        _deposits = [];
-        _changeReturned = [];
+        _transactions = [];
     }
 
     internal string DisplaySnacks() => Inventory.DisplaySnacks();
@@ -40,12 +36,14 @@ internal sealed class VendTron
         }
         else
         {
-            Deposits += deposit;
-            _deposits.Add((deposit, DateTimeOffset.UtcNow));
+            Deposit += deposit;
+            
+            DateTimeOffset now = DateTimeOffset.UtcNow;
+            _transactions.Add(new Transaction(TransactionType.Deposit, deposit, $"Time: {now:O}, Deposit: {deposit:C}", now));
         }
     }
 
-    internal void ProcessPurchase(string identifier)
+    internal void ProcessPurchaseSnack(string identifier)
     {
         if (Inventory.SnackSlots.SingleOrDefault(s => s.Identifier == identifier) is SnackSlot snackSlot)
         {
@@ -53,7 +51,7 @@ internal sealed class VendTron
             {
                 throw new InvalidOperationException("Snack is sold out, and cannot be purchased...");
             }
-            else if (Deposits == 0m || snackSlot.Snacks.First().Price > Deposits)
+            else if (Deposit == 0m || snackSlot.Snacks.First().Price > Deposit)
             {
                 throw new ArgumentException("Insufficient deposits for snack purchase...");
             }
@@ -62,34 +60,36 @@ internal sealed class VendTron
                 Snack snack = snackSlot.Snacks.First();
 
                 snackSlot.RemoveSnack(snack);
-                _purchases.Add((snack, DateTimeOffset.UtcNow));
+                DateTimeOffset now = DateTimeOffset.UtcNow;
+                _transactions.Add(new Transaction(TransactionType.Purchase, snack.Price, $"Time: {now:O}, Snack sold: {snackSlot.Identifier} {snack.ToDisplayString}", now));
             }
         }
     }
 
     internal string ProcessReturnChange()
     {
-        if (Deposits == 0)
+        if (Deposit == 0)
         {
             throw new InvalidOperationException("There is no change due...");
         }
 
-        decimal changeReturned = Deposits;
+        decimal changeReturned = Deposit;
 
-        int quarters = (int)(Deposits / QUARTER);
-        Deposits -= quarters * QUARTER;
-        int dimes = (int)(Deposits / DIME);
-        Deposits -= dimes * DIME;
-        int nickels = (int)(Deposits / NICKEL);
-        Deposits -= nickels * NICKEL;
+        int quarters = (int)(Deposit / QUARTER);
+        Deposit -= quarters * QUARTER;
+        int dimes = (int)(Deposit / DIME);
+        Deposit -= dimes * DIME;
+        int nickels = (int)(Deposit / NICKEL);
+        Deposit -= nickels * NICKEL;
 
-        if (Deposits != 0)
+        if (Deposit != 0)
         {
             throw new ArithmeticException("Error calculating change...");
         }
         else
         {
-            _changeReturned.Add((changeReturned, DateTimeOffset.UtcNow));
+            DateTimeOffset now = DateTimeOffset.UtcNow;
+            _transactions.Add(new Transaction(TransactionType.Change, changeReturned, $"Time: {now:O}, Return change: {changeReturned:C}", now));
             return $"Your change is {quarters} quarter(s), {dimes} dime(s), and {nickels} nickels...";
         }
     }
