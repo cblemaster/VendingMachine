@@ -8,6 +8,8 @@ namespace VendingMachine.Machine;
 
 internal sealed class VendTron
 {
+    private const decimal NICKEL = 0.05m;
+    
     private readonly List<Transaction> _transactions;
 
     private _Inventory Inventory { get; }  // TODO: Any refs from outside of this class?
@@ -26,6 +28,10 @@ internal sealed class VendTron
         if (deposit <= 0)
         {
             throw new ArgumentException("Zero or negative deposit not allowed...");
+        }
+        else if (deposit %NICKEL != 0)
+        {
+            throw new ArgumentException($"Only deposits in {NICKEL:C} increments are allowed...");
         }
         else if (Inventory.SnackSlots.All(s => s.Snacks.Count == 0))
         {
