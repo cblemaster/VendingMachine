@@ -1,16 +1,13 @@
 ﻿
 using VendingMachine.Inventory;
 using VendingMachine.Snacks;
+using VendingMachine.Transactions;
 using _Inventory = VendingMachine.Inventory.Inventory;
 
 namespace VendingMachine.Machine;
 
 internal sealed class VendTron
 {
-    private const decimal QUARTER = 0.25m;
-    private const decimal DIME = 0.10m;
-    private const decimal NICKEL = 0.05m;
-
     private readonly List<Transaction> _transactions;
 
     private _Inventory Inventory { get; }  // TODO: Any refs from outside of this class?
@@ -37,9 +34,8 @@ internal sealed class VendTron
         else
         {
             Deposit += deposit;
-            
-            DateTimeOffset now = DateTimeOffset.UtcNow;
-            _transactions.Add(new Transaction(TransactionType.Deposit, deposit, $"Time: {now:O}, Deposit: {deposit:C}", now));
+            Transaction depositTran = new DepositMade(deposit);
+            _transactions.Add(depositTran);
         }
     }
 
@@ -60,58 +56,21 @@ internal sealed class VendTron
                 Snack snack = snackSlot.Snacks.First();
 
                 snackSlot.RemoveSnack(snack);
-                DateTimeOffset now = DateTimeOffset.UtcNow;
-                _transactions.Add(new Transaction(TransactionType.Purchase, snack.Price, $"Time: {now:O}, Snack sold: {snackSlot.Identifier} {snack.ToDisplayString}", now, snack));
+                Transaction purchase = new SnackPurchased(snack, identifier);
+                _transactions.Add(purchase);
             }
         }
     }
 
-    internal string ProcessReturnChange()
+    internal void ProcessReturnChange()
     {
-        if (Deposit == 0)
+        if (Deposit <= 0)
         {
             throw new InvalidOperationException("There is no change due...");
         }
-
-        decimal changeReturned = Deposit;
-
-        int quarters = (int)(Deposit / QUARTER);
-        Deposit -= quarters * QUARTER;
-        int dimes = (int)(Deposit / DIME);
-        Deposit -= dimes * DIME;
-        int nickels = (int)(Deposit / NICKEL);
-        Deposit -= nickels * NICKEL;
-
-        if (Deposit != 0)
-        {
-            throw new ArithmeticException("Error calculating change...");
-        }
-        else
-        {
-            DateTimeOffset now = DateTimeOffset.UtcNow;
-            _transactions.Add(new Transaction(TransactionType.Change, changeReturned, $"Time: {now:O}, Return change: {changeReturned:C}", now));
-            return $"Your change is {quarters} quarter(s), {dimes} dime(s), and {nickels} nickels...";
-        }
-    }
-
-    private void ReportingValues()
-    {
-        IEnumerable<Transaction> snacksSold = _transactions.Where(t => t.TransactionType == TransactionType.Purchase);
-        IEnumerable<Transaction> depositsMade = _transactions.Where(t => t.TransactionType != TransactionType.Deposit);
-        IEnumerable<Transaction> changeReturned = _transactions.Where(t => t.TransactionType == TransactionType.Change);
-                
-        decimal totalSales = snacksSold.Sum(t => t.Amount);
-        decimal totalDeposits = depositsMade.Sum(t => t.Amount);
-        decimal totalChangeReturned = changeReturned.Sum(t => t.Amount);
-
-        int countSales = snacksSold.Count();
-        int countDeposits = depositsMade.Count();
-        int countChangeReturned = changeReturned.Count();
-
-        decimal avgSale = totalSales / countSales;
-        decimal avgDeposit = totalDeposits / countDeposits;
-        decimal avgChangeReturned = totalChangeReturned / countChangeReturned;
-
-        //var tytyt = snacksSold.Where(t => t.Snack is not null).GroupBy(t => t.Snack!.Label).Select(t => t.Key);
+        
+        Transaction change = new ChangeReturned(Deposit);
+        _transactions.Add(change);
+        Deposit = 0m;
     }
 }
