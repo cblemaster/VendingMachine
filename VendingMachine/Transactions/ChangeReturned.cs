@@ -21,21 +21,18 @@ internal sealed class ChangeReturned : Transaction
 
     private void CalculateChangeOrThrow()
     {
-        // TODO: is there change to return?
-
-        decimal changeToReturn = ChangeAmount;
-
-        _countOfNickels = (int)(changeToReturn / NICKEL);
+        _countOfNickels = (int)(ChangeAmount / NICKEL);
         _countOfQuarters = _countOfNickels / (int)(QUARTER / NICKEL);
         _countOfNickels -= _countOfQuarters * (int)(QUARTER / NICKEL);
         _countOfDimes = _countOfNickels / (int)(DIME / NICKEL);
         _countOfNickels -= _countOfDimes * (int)(DIME / NICKEL);
 
-        // TODO...
-        //if (changeToReturn != 0)
-        //{
-        //    throw new ArithmeticException("Error calculating change...");
-        //}
+        if (!ChangeIsValid())
+        {
+            throw new ArithmeticException("Error calculating change...");
+        }
+
+        bool ChangeIsValid() => (_countOfQuarters * QUARTER) + (_countOfDimes * DIME) + (_countOfNickels * NICKEL) == ChangeAmount;
     }
 
     internal override string ToDisplayString => $"Your change is: {_countOfQuarters} quarter(s), {_countOfDimes} dime(s), and {_countOfNickels} nickel(s)...";
