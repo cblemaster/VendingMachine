@@ -5,15 +5,13 @@ namespace VendingMachine.Domain.Transactions;
 
 internal sealed class SnackPurchased : Transaction
 {
+    private readonly string _identifier;
+    
     internal Snack Snack { get; }
-    internal string Identifier { get; }
-
+    
     internal SnackPurchased(Snack snack, string identifier) : base(DateTimeOffset.UtcNow)
     {
         Snack = snack;
-        Identifier = identifier;
+        _identifier = identifier;
     }
-
-    internal override string ToDisplayString => $"Snack purchased: {Snack.Label}, enjoy your {Snack.GetType()}...";
-    internal override string ToReportString => "";
 }

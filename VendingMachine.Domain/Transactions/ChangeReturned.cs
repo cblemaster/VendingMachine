@@ -1,4 +1,5 @@
-﻿namespace VendingMachine.Domain.Transactions;
+﻿
+namespace VendingMachine.Domain.Transactions;
 
 internal sealed class ChangeReturned : Transaction
 {
@@ -37,7 +38,4 @@ internal sealed class ChangeReturned : Transaction
 
         bool ChangeIsValid() => (_countOfQuarters * QUARTER) + (_countOfDimes * DIME) + (_countOfNickels * NICKEL) == ChangeAmount;
     }
-
-    internal override string ToDisplayString => $"Your change is: {_countOfQuarters} quarter(s), {_countOfDimes} dime(s), and {_countOfNickels} nickel(s)...";
-    internal override string ToReportString => $"{Timestamp:O} Change returned: {ChangeAmount:C}";
 }

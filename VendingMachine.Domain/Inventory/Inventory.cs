@@ -83,7 +83,7 @@ internal sealed class Inventory
             {
                 sb = snackSlot.Snacks.Count == 0
                     ? sb.AppendLine($"{snackSlot.Identifier}, Sold out!")
-                    : sb.AppendLine($"{snackSlot.ToDisplayString}, Qty: {snackSlot.Snacks.Count}");
+                    : sb.AppendLine($"{snackSlot.ToString()}, Qty: {snackSlot.Snacks.Count}");
             }
         }
         return sb.ToString();

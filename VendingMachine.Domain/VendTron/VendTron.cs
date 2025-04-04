@@ -6,7 +6,7 @@ using _Inventory = VendingMachine.Domain.Inventory.Inventory;
 
 namespace VendingMachine.Domain.VendTron;
 
-internal sealed class VendTron
+public sealed class VendTron
 {
     private const decimal NICKEL = 0.05m;
     
@@ -15,15 +15,16 @@ internal sealed class VendTron
     private _Inventory Inventory { get; }
     private decimal Deposit { get; set; }
 
-    internal VendTron()
+    public VendTron()
     {
         Inventory = new();
         _transactions = [];
+        Deposit = 0m;
     }
 
-    internal string DisplaySnacks() => Inventory.DisplaySnacks();
+    public string DisplaySnacks() => Inventory.DisplaySnacks();
 
-    internal void ProcessMakeDepositOrThrow(decimal deposit)
+    public void ProcessMakeDepositOrThrow(decimal deposit)
     {
         if (deposit <= 0)
         {
@@ -45,7 +46,7 @@ internal sealed class VendTron
         }
     }
 
-    internal void ProcessPurchaseSnackOrThrow(string identifier)
+    public void ProcessPurchaseSnackOrThrow(string identifier)
     {
         if (Inventory.SnackSlots.SingleOrDefault(s => s.Identifier == identifier) is SnackSlot snackSlot)
         {
@@ -68,7 +69,7 @@ internal sealed class VendTron
         }
     }
 
-    internal void ProcessReturnChangeOrThrow()
+    public void ProcessReturnChangeOrThrow()
     {
         if (Deposit <= 0)
         {
