@@ -1,9 +1,4 @@
 ﻿
 namespace VendingMachine.Domain.Snacks;
 
-internal sealed class Drink : Snack
-{
-    internal Drink(decimal price, string label) : base(price, label) { }
-
-    internal override void SomethingPolymorphic() => base.SomethingPolymorphic();
-}
+internal sealed record Drink(decimal Price, string Label) : Snack(Price, Label);
