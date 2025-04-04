@@ -21,7 +21,7 @@ internal sealed class VendTron
 
     internal string DisplaySnacks() => Inventory.DisplaySnacks();
 
-    internal void ProcessMakeDeposit(decimal deposit)
+    internal void ProcessMakeDepositOrThrow(decimal deposit)
     {
         if (deposit <= 0)
         {
@@ -39,7 +39,7 @@ internal sealed class VendTron
         }
     }
 
-    internal void ProcessPurchaseSnack(string identifier)
+    internal void ProcessPurchaseSnackOrThrow(string identifier)
     {
         if (Inventory.SnackSlots.SingleOrDefault(s => s.Identifier == identifier) is SnackSlot snackSlot)
         {
@@ -62,7 +62,7 @@ internal sealed class VendTron
         }
     }
 
-    internal void ProcessReturnChange()
+    internal void ProcessReturnChangeOrThrow()
     {
         if (Deposit <= 0)
         {

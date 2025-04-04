@@ -16,10 +16,10 @@ internal sealed class ChangeReturned : Transaction
     internal ChangeReturned(decimal changeAmount) : base(DateTimeOffset.UtcNow)
     {
         ChangeAmount = changeAmount;
-        CalculateChange();
+        CalculateChangeOrThrow(); // TODO: try..catch
     }
 
-    private void CalculateChange()
+    private void CalculateChangeOrThrow()
     {
         decimal changeToReturn = ChangeAmount;
 
