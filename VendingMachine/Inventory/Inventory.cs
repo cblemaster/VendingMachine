@@ -7,6 +7,7 @@ namespace VendingMachine.Inventory;
 
 internal sealed class Inventory
 {
+    private const string INVENTORY_FILE_NAME = "inventory.json";
     private readonly string[] _validIdentifiers = ["A1", "A2", "A3", "A4", "B1", "B2", "B3", "B4", "C1", "C2", "C3", "C4", "D1", "D2", "D3", "D4"];
     private SnackSlot[] _snackSlots = [];
 
@@ -59,7 +60,7 @@ internal sealed class Inventory
             static string ReadInventoryToString()
             {
                 string currentDirectory = Environment.CurrentDirectory;
-                string fullInventoryPath = Path.Combine(currentDirectory, @"..\..\..\", "inventory.json");  // TODO: magic string
+                string fullInventoryPath = Path.Combine(currentDirectory, @"..\..\..\", INVENTORY_FILE_NAME);
 
                 using StreamReader sr = new(fullInventoryPath);
                 return sr.ReadToEnd();
