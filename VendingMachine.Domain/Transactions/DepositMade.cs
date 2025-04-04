@@ -1,5 +1,4 @@
-﻿
-namespace VendingMachine.Transactions;
+﻿namespace VendingMachine.Domain.Transactions;
 
 internal sealed class DepositMade : Transaction
 {

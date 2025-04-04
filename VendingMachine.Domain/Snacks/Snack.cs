@@ -1,5 +1,5 @@
 ﻿
-namespace VendingMachine.Snacks;
+namespace VendingMachine.Domain.Snacks;
 
 internal class Snack
 {

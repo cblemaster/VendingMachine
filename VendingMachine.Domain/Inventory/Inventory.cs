@@ -1,9 +1,9 @@
 ﻿
 using System.Text;
 using System.Text.Json;
-using VendingMachine.Snacks;
+using VendingMachine.Domain.Snacks;
 
-namespace VendingMachine.Inventory;
+namespace VendingMachine.Domain.Inventory;
 
 internal sealed class Inventory
 {

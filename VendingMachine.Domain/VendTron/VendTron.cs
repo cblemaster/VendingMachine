@@ -1,10 +1,10 @@
 ﻿
-using VendingMachine.Inventory;
-using VendingMachine.Snacks;
-using VendingMachine.Transactions;
-using _Inventory = VendingMachine.Inventory.Inventory;
+using VendingMachine.Domain.Inventory;
+using VendingMachine.Domain.Snacks;
+using VendingMachine.Domain.Transactions;
+using _Inventory = VendingMachine.Domain.Inventory.Inventory;
 
-namespace VendingMachine.Machine;
+namespace VendingMachine.Domain.VendTron;
 
 internal sealed class VendTron
 {

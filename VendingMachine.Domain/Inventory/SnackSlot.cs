@@ -1,7 +1,7 @@
 ﻿
-using VendingMachine.Snacks;
+using VendingMachine.Domain.Snacks;
 
-namespace VendingMachine.Inventory;
+namespace VendingMachine.Domain.Inventory;
 
 internal sealed class SnackSlot
 {

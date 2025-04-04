@@ -1,5 +1,5 @@
 ﻿
-namespace VendingMachine.Transactions;
+namespace VendingMachine.Domain.Transactions;
 
 internal abstract class Transaction(DateTimeOffset timestamp)
 {

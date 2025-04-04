@@ -1,7 +1,7 @@
 ﻿
-using VendingMachine.Snacks;
+using VendingMachine.Domain.Snacks;
 
-namespace VendingMachine.Transactions;
+namespace VendingMachine.Domain.Transactions;
 
 internal sealed class SnackPurchased : Transaction
 {

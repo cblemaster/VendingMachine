@@ -1,8 +1,8 @@
 ﻿
 using System.Text;
-using VendingMachine.Transactions;
+using VendingMachine.Domain.Transactions;
 
-namespace VendingMachine.Reports;
+namespace VendingMachine.Domain.Reports;
 
 internal sealed class TransactionReport(IEnumerable<Transaction> transactions)
 {
