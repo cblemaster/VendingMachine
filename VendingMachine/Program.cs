@@ -1,5 +1,14 @@
 ﻿
 using VendingMachine.Machine;
 VendTron vt = new();
-vt.ProcessMakeDepositOrThrow(12.45m); // TODO: try..catch
+
+try
+{
+    vt.ProcessMakeDepositOrThrow(12.45m);
+}
+catch (Exception)
+{
+    throw; // TODO: Error message
+}
+
 Console.WriteLine(vt.DisplaySnacks());
