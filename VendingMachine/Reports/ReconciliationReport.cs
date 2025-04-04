@@ -1,13 +1,12 @@
 ﻿
 using System.Text;
-using VendingMachine.Machine;
 using VendingMachine.Transactions;
 
 namespace VendingMachine.Reports;
 
 internal sealed class ReconciliationReport(IEnumerable<Transaction> transactions)
 {
-    private readonly List<Transaction> _transactions = transactions.ToList();
+    private readonly List<Transaction> _transactions = [.. transactions];
 
     internal string GenerateReport()
     {
@@ -24,14 +23,9 @@ internal sealed class ReconciliationReport(IEnumerable<Transaction> transactions
         decimal reconcile = sumOfDeposits - sumOfSnacksPurchasedPrice - sumOfChangeReturned;
         sb = sb.AppendLine($"Reconciliation amount: {reconcile:C}");
 
-        if (reconcile != 0)
-        {
-            sb = sb.AppendLine($"RECONCILATION FAILURE, see Transaction report to reconcile transaction line items.");
-        }
-        else
-        {
-            sb = sb.AppendLine($"RECONCILATION SUCCESS");
-        }
+        sb = reconcile == 0
+            ? sb.AppendLine($"RECONCILATION SUCCESS")
+            : sb.AppendLine($"RECONCILATION FAILURE, see Transaction report to reconcile transaction line items.");
 
         return sb.ToString();
     }

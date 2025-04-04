@@ -68,7 +68,7 @@ internal sealed class VendTron
         {
             throw new InvalidOperationException("There is no change due...");
         }
-        
+
         Transaction change = new ChangeReturned(Deposit);
         _transactions.Add(change);
         Deposit = 0m;

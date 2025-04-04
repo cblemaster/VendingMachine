@@ -21,7 +21,7 @@ internal sealed class SalesReport(IEnumerable<Transaction> transactions)
             decimal extended = countOfSnackPurchased * price;
             sb = sb.AppendLine(snack.ToReportString);
         }
-    
+
         sb = sb.AppendLine($"TOTAL SALES: {_transactions.OfType<SnackPurchased>().Sum(s => s.Snack.Price)}");
 
         return sb.ToString();

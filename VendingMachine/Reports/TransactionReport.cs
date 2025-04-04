@@ -1,14 +1,12 @@
 ﻿
 using System.Text;
-using VendingMachine.Machine;
 using VendingMachine.Transactions;
 
 namespace VendingMachine.Reports;
 
 internal sealed class TransactionReport(IEnumerable<Transaction> transactions)
 {
-    private decimal _deposit;
-    private readonly List<Transaction> _transactions = transactions.ToList();
+    private readonly List<Transaction> _transactions = [.. transactions];
 
     internal void GenerateReport()
     {

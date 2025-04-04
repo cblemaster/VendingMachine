@@ -1,6 +1,4 @@
 ﻿
-using System.Transactions;
-
 namespace VendingMachine.Transactions;
 
 internal sealed class ChangeReturned : Transaction
@@ -12,7 +10,7 @@ internal sealed class ChangeReturned : Transaction
     private int _countOfQuarters;
     private int _countOfDimes;
     private int _countOfNickels;
-    
+
     internal decimal ChangeAmount { get; }
 
     internal ChangeReturned(decimal changeAmount) : base(DateTimeOffset.UtcNow)
@@ -29,7 +27,7 @@ internal sealed class ChangeReturned : Transaction
         changeToReturn -= _countOfQuarters * QUARTER;
         _countOfDimes = (int)(ChangeAmount / DIME);
         changeToReturn -= _countOfDimes * DIME;
-        _countOfNickels = (int)(ChangeAmount);
+        _countOfNickels = (int)ChangeAmount;
 
         if (changeToReturn != 0)
         {
